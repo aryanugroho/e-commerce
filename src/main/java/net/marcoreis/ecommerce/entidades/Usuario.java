@@ -1,14 +1,17 @@
 package net.marcoreis.ecommerce.entidades;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Categoria {
+public class Usuario {
     private Long id;
+    private String email;
     private String nome;
-    private String descricao;
+    private Date ultimoLogin;
 
     @Id
     @GeneratedValue
@@ -20,6 +23,14 @@ public class Categoria {
 	this.id = id;
     }
 
+    public void setEmail(String email) {
+	this.email = email;
+    }
+
+    public String getEmail() {
+	return email;
+    }
+
     public void setNome(String nome) {
 	this.nome = nome;
     }
@@ -28,11 +39,11 @@ public class Categoria {
 	return nome;
     }
 
-    public void setDescricao(String descricao) {
-	this.descricao = descricao;
+    public void setUltimoLogin(Date ultimoLogin) {
+	this.ultimoLogin = ultimoLogin;
     }
 
-    public String getDescricao() {
-	return descricao;
+    public Date getUltimoLogin() {
+	return ultimoLogin;
     }
 }
