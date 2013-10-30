@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 
 import net.marcoreis.ecommerce.entidades.Categoria;
 import net.marcoreis.ecommerce.entidades.Produto;
+import net.marcoreis.ecommerce.util.IndexadorECommerce;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
 import org.apache.commons.io.IOUtils;
@@ -23,6 +24,7 @@ public class ProdutoBean extends BaseBean {
     private Produto produto;
     private Collection<Produto> produtos;
     private UploadedFile especificacaoFabricante;
+    private IndexadorECommerce indexador;
 
     @PostConstruct
     public void init() {
@@ -61,6 +63,10 @@ public class ProdutoBean extends BaseBean {
 	    em.persist(getProduto());
 	    em.getTransaction().commit();
 	    em.close();
+	    //
+	    getIndexador().indexarProdutos();
+	    getIndexador().fechar();
+	    //
 	    infoMsg("Dados gravados com sucesso");
 	} catch (Exception e) {
 	    errorMsg(e);
@@ -73,5 +79,12 @@ public class ProdutoBean extends BaseBean {
 
     public UploadedFile getEspecificacaoFabricante() {
 	return especificacaoFabricante;
+    }
+
+    public IndexadorECommerce getIndexador() {
+	if (indexador == null) {
+	    indexador = new IndexadorECommerce();
+	}
+	return indexador;
     }
 }
