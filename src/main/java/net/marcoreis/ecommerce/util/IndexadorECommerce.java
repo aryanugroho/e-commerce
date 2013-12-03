@@ -32,8 +32,8 @@ public class IndexadorECommerce {
     public IndexadorECommerce() {
 	try {
 	    diretorio = FSDirectory.open(new File(Constantes.DIRETORIO_INDICE));
-	    Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_44);
-	    IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_44,
+	    Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_46);
+	    IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_46,
 		    analyzer);
 	    writer = new IndexWriter(diretorio, config);
 	} catch (Exception e) {
