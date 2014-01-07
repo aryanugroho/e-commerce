@@ -1,4 +1,4 @@
-package net.marcoreis.ecommerce.controller;
+package net.marcoreis.ecommerce.controlador;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

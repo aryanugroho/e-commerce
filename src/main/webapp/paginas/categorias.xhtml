@@ -29,8 +29,10 @@
 						<h:outputText value="#{item.descricao}" />
 					</p:column>
 					<p:column style="width: 50px;">
-						<p:commandButton type="submit" icon="ui-icon-pencil" />
-						<p:commandButton type="submit" icon="ui-icon-trash" />
+						<p:commandButton type="submit"
+							action="#{categoriaBean.editar(item)}" icon="ui-icon-pencil"
+							ajax="false" />
+						<p:commandButton type="submit" icon="ui-icon-trash" ajax="false" />
 					</p:column>
 				</p:dataTable>
 

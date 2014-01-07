@@ -1,8 +1,7 @@
-package net.marcoreis.ecommerce.controller;
+package net.marcoreis.ecommerce.controlador;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -14,11 +13,6 @@ public class BaseBean implements Serializable {
     private static final long serialVersionUID = -5895396595360064610L;
     protected static final Logger logger = Logger.getLogger(BaseBean.class);
     private Usuario usuario;
-
-    @PostConstruct
-    public void init() {
-	usuario = new Usuario();
-    }
 
     public void setUsuario(Usuario usuario) {
 	this.usuario = usuario;

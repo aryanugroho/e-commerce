@@ -1,4 +1,4 @@
-package net.marcoreis.ecommerce.controller;
+package net.marcoreis.ecommerce.controlador;
 
 import java.util.Collection;
 

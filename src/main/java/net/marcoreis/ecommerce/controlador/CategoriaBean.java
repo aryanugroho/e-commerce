@@ -1,4 +1,4 @@
-package net.marcoreis.ecommerce.controller;
+package net.marcoreis.ecommerce.controlador;
 
 import java.util.Collection;
 
@@ -27,8 +27,8 @@ public class CategoriaBean extends BaseBean {
 
     @PostConstruct
     public void init() {
-	categoria = new Categoria();
 	carregarCategorias();
+	categoria = new Categoria();
     }
 
     public void salvar() {
@@ -52,5 +52,10 @@ public class CategoriaBean extends BaseBean {
 
     public Collection<Categoria> getCategorias() {
 	return categorias;
+    }
+
+    public String editar(Categoria categoria) {
+	this.categoria = categoria;
+	return "categoria";
     }
 }
