@@ -64,16 +64,16 @@ public class IndexadorECommerce {
 	Document doc = new Document();
 	doc.add(new LongField("id.produto", prod.getId(), Store.YES));
 	doc.add(new TextField("categoria", prod.getCategoria().getNome(),
-	    Store.YES));
+		Store.YES));
 	doc.add(new TextField("nome", prod.getNome(), Store.YES));
 	doc.add(new TextField("descricao", prod.getDescricao(), Store.YES));
 	//
 	ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-	    prod.getEspecificacaoFabricante());
+		prod.getEspecificacaoFabricante());
 	String especificacaoFabricante = getTika().parseToString(
-	    byteArrayInputStream);
+		byteArrayInputStream);
 	doc.add(new TextField("especificacaoFabricante",
-	    especificacaoFabricante, Store.YES));
+		especificacaoFabricante, Store.YES));
 	//
 	StringBuilder textoCompleto = new StringBuilder();
 	textoCompleto.append(prod.getCategoria().getNome());
@@ -84,10 +84,10 @@ public class IndexadorECommerce {
 	textoCompleto.append(" ");
 	textoCompleto.append(prod.getDescricao());
 	doc.add(new TextField("textoCompleto", textoCompleto.toString(),
-	    Store.YES));
+		Store.YES));
 	doc.add(new TextField("tabela", "produto", Store.YES));
 	Term termoIdentificacao = new Term("id.produto", prod.getId()
-	    .toString());
+		.toString());
 	writer.updateDocument(termoIdentificacao, doc);
     }
 
