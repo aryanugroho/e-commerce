@@ -1,5 +1,8 @@
 package net.marcoreis.ecommerce.controlador;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -13,9 +16,11 @@ import net.marcoreis.ecommerce.util.JPAUtil;
 public class UsuarioBean extends BaseBean {
     private static final long serialVersionUID = -2658024901938874346L;
     private Usuario usuario;
+    private Collection<Usuario> usuarios;
 
     @PostConstruct
     public void init() {
+	carregarUsuarios();
 	usuario = new Usuario();
     }
 
@@ -38,5 +43,19 @@ public class UsuarioBean extends BaseBean {
 	} catch (Exception e) {
 	    errorMsg(e);
 	}
+    }
+
+    public void carregarUsuarios() {
+	EntityManager em = JPAUtil.getInstance().getEntityManager();
+	usuarios = em.createQuery("from Usuario").getResultList();
+	em.close();
+    }
+
+    public Collection<Usuario> getUsuarios() {
+	return usuarios;
+    }
+
+    public void setUsuarios(Collection<Usuario> usuarios) {
+	this.usuarios = usuarios;
     }
 }
