@@ -25,14 +25,15 @@
 					<p:column headerText="Nome">
 						<h:outputText value="#{item.nome}" />
 					</p:column>
-					<p:column headerText="Categoria">
+					<p:column headerText="Descrição">
 						<h:outputText value="#{item.descricao}" />
 					</p:column>
 					<p:column style="width: 50px;">
 						<p:commandButton type="submit"
 							action="#{categoriaBean.editar(item)}" icon="ui-icon-pencil"
 							ajax="false" />
-						<p:commandButton type="submit" icon="ui-icon-trash" ajax="false" />
+						<p:commandButton type="submit" icon="ui-icon-trash" ajax="false"
+							action="#{categoriaBean.excluir(item)}" />
 					</p:column>
 				</p:dataTable>
 

@@ -30,7 +30,7 @@ public class BaseBean implements Serializable {
     protected void errorMsg(Throwable t) {
 	logger.error(t);
 	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-		t.getLocalizedMessage(), "Erro");
+		t.getMessage(), "Erro");
 	FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 

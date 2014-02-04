@@ -35,7 +35,7 @@ public class CategoriaBean extends BaseBean {
 	try {
 	    EntityManager em = JPAUtil.getInstance().getEntityManager();
 	    em.getTransaction().begin();
-	    em.persist(getCategoria());
+	    categoria = em.merge(getCategoria());
 	    em.getTransaction().commit();
 	    em.close();
 	    infoMsg("Dados gravados com sucesso");
@@ -57,5 +57,21 @@ public class CategoriaBean extends BaseBean {
     public String editar(Categoria categoria) {
 	this.categoria = categoria;
 	return "categoria";
+    }
+
+    public void excluir(Categoria categoria) {
+	EntityManager em = JPAUtil.getInstance().getEntityManager();
+	try {
+	    em.getTransaction().begin();
+	    categoria = em.merge(categoria);
+	    em.remove(categoria);
+	    em.getTransaction().commit();
+	    categorias = em.createQuery("from Categoria").getResultList();
+	    infoMsg("Categoria excluída: " + categoria.getDescricao());
+	} catch (Exception e) {
+	    errorMsg(e);
+	} finally {
+	    em.close();
+	}
     }
 }

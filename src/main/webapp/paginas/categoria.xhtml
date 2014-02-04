@@ -20,11 +20,14 @@
 			<p:panel header="Categoria"
 				style="margin-left: 24%; margin-right: 24%;">
 
+				<h:inputHidden value="#{categoriaBean.categoria.id}" />
 
 				<p:panelGrid columns="2">
 
-					<p:outputLabel value="ID:" />
-					<p:inputText value="#{categoriaBean.categoria.id}" disabled="true" />
+					<p:outputLabel value="ID:"
+						rendered="#{categoriaBean.categoria.id > 0}" />
+					<p:inputText value="#{categoriaBean.categoria.id}" disabled="true"
+						rendered="#{categoriaBean.categoria.id > 0}" />
 
 					<p:outputLabel value="Nome:" />
 					<p:inputText value="#{categoriaBean.categoria.nome}" />
@@ -38,7 +41,7 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Salvar" ajax="false"
-						actionListener="#{categoriaBean.salvar}" icon="ui-icon-disk" />
+						actionListener="#{categoriaBean.salvar()}" icon="ui-icon-disk" />
 					<p:commandButton value="Voltar" type="submit"
 						action="categorias?faces-redirect=true" ajax="false"
 						icon="ui-icon-arrowreturnthick-1-w" />
