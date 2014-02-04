@@ -8,13 +8,13 @@ import javax.persistence.Id;
 
 @Entity
 public class Usuario {
+    @Id
+    @GeneratedValue
     private Long id;
     private String email;
     private String nome;
     private Date ultimoLogin;
 
-    @Id
-    @GeneratedValue
     public Long getId() {
 	return id;
     }
