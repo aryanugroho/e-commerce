@@ -3,8 +3,10 @@ package net.marcoreis.ecommerce.entidades;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = "categoria.consultaPelaDescricao", query = "from Categoria where descricao like :descricao")
 public class Categoria {
     private Long id;
     private String nome;

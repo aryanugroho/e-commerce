@@ -12,7 +12,7 @@ import org.junit.Test;
 import net.marcoreis.ecommerce.entidades.Usuario;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
-public class TesteInsereUsuario {
+public class TesteAlteraUsuario {
 
     private EntityManager em;
 
@@ -30,12 +30,13 @@ public class TesteInsereUsuario {
 
     @Test
     public void inserirUsuario() {
-        Usuario usuario = new Usuario();
-        usuario.setEmail("ma@marcoreis.net");
-        usuario.setNome("Marco Reis");
+        Long id = 2l;
+        Usuario usuario = em.find(Usuario.class, id);
+        Assert.assertNotNull("Usuario não cadastrado", usuario);
+        usuario.setEmail("diego@marcoreis.net");
+        usuario.setNome("Diego");
         Date data = new Date();
         usuario.setUltimoLogin(data);
         em.persist(usuario);
-        Assert.assertTrue("Usuário gravado com sucesso", usuario.getId() > 0);
     }
 }
