@@ -10,22 +10,23 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "produto.consultaTotal", query = "from Produto"),
-        @NamedQuery(name = "produto.consultaTotalPorCategoria", query = "from Produto"),
-        @NamedQuery(name = "produto.consultaTotalProdutosPorCategoria", query = "from Produto"),
-        @NamedQuery(name = "produto.consultaPorDescricao", query = "from Produto"),
-        @NamedQuery(name = "produto.consultaPorPreco", query = "from Produto") })
+        @NamedQuery(name = "produto.consultaTotal", query = "select count(p) from Produto p"),
+        @NamedQuery(name = "produto.consultaTotalPorCategoria", query = "select count(p) from Produto p where categoria.id = :idCategoria"),
+        @NamedQuery(name = "produto.consultaPorDescricao", query = "from Produto where descricao like :descricaoParcial"),
+        @NamedQuery(name = "produto.consultaPorIntervaloPreco", query = "from Produto where preco >= ?1 and preco <= ?2") })
 public class Produto {
+    @Id
+    @GeneratedValue
     private Long id;
+    @ManyToOne
     private Categoria categoria;
     private String nome;
     private String descricao;
     private String especificacaoLoja;
+    @Lob
     private byte[] especificacaoFabricante;
     private Double preco;
 
-    @Id
-    @GeneratedValue
     public Long getId() {
         return id;
     }
@@ -34,7 +35,6 @@ public class Produto {
         this.id = id;
     }
 
-    @ManyToOne
     public Categoria getCategoria() {
         return categoria;
     }
@@ -67,7 +67,6 @@ public class Produto {
         this.especificacaoLoja = especificacaoLoja;
     }
 
-    @Lob
     public byte[] getEspecificacaoFabricante() {
         return especificacaoFabricante;
     }
