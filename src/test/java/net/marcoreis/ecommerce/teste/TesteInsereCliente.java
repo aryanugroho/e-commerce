@@ -4,16 +4,16 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 
+import net.marcoreis.ecommerce.entidades.Cliente;
+import net.marcoreis.ecommerce.entidades.Usuario;
+import net.marcoreis.ecommerce.util.JPAUtil;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import net.marcoreis.ecommerce.entidades.Usuario;
-import net.marcoreis.ecommerce.util.JPAUtil;
-
-public class TesteAlteraUsuario {
-
+public class TesteInsereCliente {
     private EntityManager em;
 
     @Before
@@ -29,14 +29,13 @@ public class TesteAlteraUsuario {
     }
 
     @Test
-    public void alterarUsuario() {
-        Long id = 2l;
-        Usuario usuario = em.find(Usuario.class, id);
-        Assert.assertNotNull("Usuario não cadastrado", usuario);
-        usuario.setEmail("diego@lucas.net");
-        usuario.setNome("Diego Lucas");
-        Date data = new Date();
-        usuario.setUltimoLogin(data);
-        em.persist(usuario);
+    public void inserirCliente() {
+        Cliente cliente = new Cliente();
+        cliente.setEmail("jose@oracle.com");
+        cliente.setNome("Jose Carlos");
+        cliente.setCpfCnpj("123456");
+        em.persist(cliente);
+        Assert.assertTrue("Cliente gravado com sucesso", cliente.getId() > 0);
     }
+
 }
