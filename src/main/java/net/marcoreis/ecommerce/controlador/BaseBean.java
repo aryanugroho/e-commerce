@@ -15,29 +15,29 @@ public class BaseBean implements Serializable {
     private Usuario usuario;
 
     public void setUsuario(Usuario usuario) {
-	this.usuario = usuario;
+        this.usuario = usuario;
     }
 
     public Usuario getUsuario() {
-	return usuario;
+        return usuario;
     }
 
     protected void infoMsg(String message) {
-	FacesMessage msg = new FacesMessage(message);
-	FacesContext.getCurrentInstance().addMessage(null, msg);
+        FacesMessage msg = new FacesMessage(message);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     protected void errorMsg(Throwable t) {
-	logger.error(t);
-	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-		t.getMessage(), "Erro");
-	FacesContext.getCurrentInstance().addMessage(null, msg);
+        logger.error(t);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                t.getMessage(), "Erro");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     protected void errorMsg(String message) {
-	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-		message, "Erro");
-	FacesContext.getCurrentInstance().addMessage(null, msg);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                message, "Erro");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
 }

@@ -32,8 +32,8 @@
 						<p:commandButton type="submit"
 							action="#{categoriaBean.editar(item)}" icon="ui-icon-pencil"
 							ajax="false" />
-						<p:commandButton type="submit" icon="ui-icon-trash" ajax="false"
-							action="#{categoriaBean.excluir(item)}" />
+						<p:commandButton type="submit" icon="ui-icon-trash"
+							update="tabelaCategorias" action="#{categoriaBean.excluir(item)}" />
 					</p:column>
 				</p:dataTable>
 

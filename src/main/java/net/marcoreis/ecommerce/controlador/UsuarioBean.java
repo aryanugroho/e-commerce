@@ -19,42 +19,42 @@ public class UsuarioBean extends BaseBean {
 
     @PostConstruct
     public void init() {
-	carregarUsuarios();
-	usuario = new Usuario();
+        carregarUsuarios();
+        usuario = new Usuario();
     }
 
     public void setUsuario(Usuario usuario) {
-	this.usuario = usuario;
+        this.usuario = usuario;
     }
 
     public Usuario getUsuario() {
-	return usuario;
+        return usuario;
     }
 
     public void salvar() {
-	try {
-	    EntityManager em = JPAUtil.getInstance().getEntityManager();
-	    em.getTransaction().begin();
-	    em.persist(getUsuario());
-	    em.getTransaction().commit();
-	    em.close();
-	    infoMsg("Dados gravados com sucesso");
-	} catch (Exception e) {
-	    errorMsg(e);
-	}
+        try {
+            EntityManager em = JPAUtil.getInstance().getEntityManager();
+            em.getTransaction().begin();
+            em.persist(getUsuario());
+            em.getTransaction().commit();
+            em.close();
+            infoMsg("Dados gravados com sucesso");
+        } catch (Exception e) {
+            errorMsg(e);
+        }
     }
 
     public void carregarUsuarios() {
-	EntityManager em = JPAUtil.getInstance().getEntityManager();
-	usuarios = em.createQuery("from Usuario").getResultList();
-	em.close();
+        EntityManager em = JPAUtil.getInstance().getEntityManager();
+        usuarios = em.createQuery("from Usuario").getResultList();
+        em.close();
     }
 
     public Collection<Usuario> getUsuarios() {
-	return usuarios;
+        return usuarios;
     }
 
     public void setUsuarios(Collection<Usuario> usuarios) {
-	this.usuarios = usuarios;
+        this.usuarios = usuarios;
     }
 }

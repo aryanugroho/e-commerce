@@ -17,9 +17,7 @@
 
 			<p:spacer height="3px" />
 
-			<p:panel header="Acesso"
-				style="margin-left: 34%; margin-right: 34%;">
-
+			<p:panel header="Acesso" style="margin-left: 34%; margin-right: 34%;">
 
 				<div align="center">
 					<p:inputText value="#{loginBean.usuario.email}" id="txtEmail"
@@ -28,13 +26,12 @@
 						<f:validateRegex
 							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
 					</p:inputText>
-				<p:watermark value="Informe seu e-mail" for="txtEmail" />
-
+					<p:watermark value="Informe seu e-mail" for="txtEmail" />
 				</div>
 				<p:spacer height="6px" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Login" ajax="false"
+					<p:commandButton value="Login"
 						action="#{loginBean.login}" icon="ui-icon-gear" />
 				</f:facet>
 			</p:panel>
