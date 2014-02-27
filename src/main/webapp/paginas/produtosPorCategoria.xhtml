@@ -17,11 +17,27 @@
 
 			<p:spacer height="3px" />
 
-			<p:panel header="Produto"
+			<p:panel header="Produtos por categoria"
 				style="margin-left: 24%; margin-right: 24%;">
 
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="Categoria:" />
+					<p:selectOneMenu value="#{produtoBean.produto.categoria.id}"
+						valueChangeListener="#{produtoBean.carregarProdutosPorCategoria}">
+						<f:selectItem itemLabel="" itemValue="" />
+						<f:selectItems value="#{categoriaBean.categorias}" var="item"
+							itemLabel="#{item.nome}" itemValue="#{item.id}" />
+						<p:ajax event="change" update="tabelaProdutos" />
+					</p:selectOneMenu>
+
+				</p:panelGrid>
+
+				<p:spacer height="6px" />
+
 				<p:dataTable var="item" value="#{produtoBean.produtos}"
-					id="tabelaProdutos" sortBy="#{item.nome}">
+					id="tabelaProdutos" sortBy="#{item.nome}"
+					emptyMessage="Nenhum produto para esta categoria">
 					<p:column headerText="Nome" sortBy="#{item.nome}">
 						<h:outputText value="#{item.nome}" />
 					</p:column>
@@ -33,20 +49,8 @@
 					<p:column headerText="Categoria" sortBy="#{item.categoria.nome}">
 						<h:outputText value="#{item.categoria.nome}" />
 					</p:column>
-					<p:column style="width: 50px;">
-						<p:commandButton type="submit" icon="ui-icon-pencil"
-							action="#{produtoBean.editar(item)}" ajax="false" />
-						<p:commandButton type="submit" icon="ui-icon-trash"
-							action="#{produtoBean.excluir(item)}" update="tabelaProdutos" />
-					</p:column>
 				</p:dataTable>
 
-				<p:spacer height="6px" />
-
-				<f:facet name="footer">
-					<p:commandButton value="Novo" action="produto" ajax="false"
-						icon="ui-icon-document" />
-				</f:facet>
 			</p:panel>
 
 		</h:form>

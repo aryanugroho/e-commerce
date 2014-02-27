@@ -20,21 +20,30 @@
 			<p:panel header="Produto"
 				style="margin-left: 24%; margin-right: 24%;">
 
+				<h:inputHidden value="#{produtoBean.produto.id}" />
+
 				<p:panelGrid columns="2">
 
 					<p:outputLabel value="ID:" />
 					<p:inputText value="#{produtoBean.produto.id}" disabled="true" />
 
 					<p:outputLabel value="Nome:" />
-					<p:inputText value="#{produtoBean.produto.nome}" />
+					<p:inputText value="#{produtoBean.produto.nome}" size="50"
+						requiredMessage="Informe o nome do produto" required="true"
+						label="Nome do produto">
+						<f:validateLength minimum="5" maximum="100" for="txtNome" />
+					</p:inputText>
 
 					<p:outputLabel value="Preço (R$):" />
-					<p:inputText value="#{produtoBean.produto.preco}">
+					<p:inputText value="#{produtoBean.produto.preco}" id="txtValor"
+						requiredMessage="Informe o preço do produto" required="true"
+						label="Valor do produto">
 						<f:convertNumber locale="pt_BR" />
+						<f:validateDoubleRange minimum="1" for="txtValor" />
 					</p:inputText>
 
 					<p:outputLabel value="Descrição:" />
-					<p:inputTextarea value="#{produtoBean.produto.descricao}" />
+					<p:inputTextarea value="#{produtoBean.produto.descricao}" cols="50" />
 
 					<p:outputLabel value="Especificação da loja" />
 					<p:editor value="#{produtoBean.produto.especificacaoLoja}" />
@@ -44,7 +53,8 @@
 						mode="simple" />
 
 					<p:outputLabel value="Categoria:" />
-					<p:selectOneMenu value="#{produtoBean.produto.categoria.id}">
+					<p:selectOneMenu value="#{produtoBean.produto.categoria.id}"
+						required="true" requiredMessage="Informe a categoria do produto">
 						<f:selectItems value="#{categoriaBean.categorias}" var="item"
 							itemLabel="#{item.nome}" itemValue="#{item.id}" />
 					</p:selectOneMenu>
@@ -54,11 +64,12 @@
 				<p:spacer height="6px" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Salvar" ajax="false"
-						actionListener="#{produtoBean.salvar}" icon="ui-icon-disk" />
-					<p:commandButton value="Voltar" type="submit"
+					<p:commandButton value="Salvar"
+						actionListener="#{produtoBean.salvar}" icon="ui-icon-disk"
+						update="messages" />
+					<p:commandButton value="Voltar"
 						action="produtos?faces-redirect=true" ajax="false"
-						icon="ui-icon-arrowreturnthick-1-w" />
+						immediate="true" icon="ui-icon-arrowreturnthick-1-w" />
 				</f:facet>
 			</p:panel>
 
