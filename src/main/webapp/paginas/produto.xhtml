@@ -29,8 +29,8 @@
 
 					<p:outputLabel value="Nome:" />
 					<p:inputText value="#{produtoBean.produto.nome}" size="50"
-						requiredMessage="Informe o nome do produto" required="true"
-						label="Nome do produto">
+						id="txtNome" requiredMessage="Informe o nome do produto"
+						required="true" label="Nome do produto">
 						<f:validateLength minimum="5" maximum="100" for="txtNome" />
 					</p:inputText>
 
