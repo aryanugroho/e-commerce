@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -18,7 +18,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.primefaces.model.UploadedFile;
 
-@RequestScoped
+@ViewScoped
 @ManagedBean
 public class ProdutoBean extends BaseBean {
     private static final long serialVersionUID = -6475971812078805662L;
@@ -90,7 +90,7 @@ public class ProdutoBean extends BaseBean {
 
     public String editar(Produto produto) {
         this.produto = produto;
-        return "produto";
+        return "produto?faces-redirect=true&includeViewParams=true";
     }
 
     public void excluir(Produto produto) {

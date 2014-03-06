@@ -15,26 +15,34 @@ public class Categoria {
     @Id
     @GeneratedValue
     public Long getId() {
-	return id;
+        return id;
     }
 
     public void setId(Long id) {
-	this.id = id;
+        this.id = id;
     }
 
     public void setNome(String nome) {
-	this.nome = nome;
+        this.nome = nome;
     }
 
     public String getNome() {
-	return nome;
+        return nome;
     }
 
     public void setDescricao(String descricao) {
-	this.descricao = descricao;
+        this.descricao = descricao;
     }
 
     public String getDescricao() {
-	return descricao;
+        return descricao;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        Categoria other = (Categoria) obj;
+        return getId() == other.getId();
     }
 }

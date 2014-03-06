@@ -29,8 +29,9 @@
 						<h:outputText value="#{item.email}" />
 					</p:column>
 					<p:column style="width: 50px;">
-						<p:commandButton type="submit" icon="ui-icon-pencil" />
-						<p:commandButton type="submit" icon="ui-icon-trash" />
+						<p:commandButton icon="ui-icon-pencil"
+							action="#{usuarioBean.editar(item)}" />
+						<p:commandButton icon="ui-icon-trash" />
 					</p:column>
 				</p:dataTable>
 

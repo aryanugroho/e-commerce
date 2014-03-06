@@ -17,6 +17,10 @@
 
 			<p:spacer height="3px" />
 
+			<f:metadata>
+				<f:viewParam name="produto" value="#{produtoBean.produto}" />
+			</f:metadata>
+
 			<p:panel header="Produto"
 				style="margin-left: 24%; margin-right: 24%;">
 
@@ -53,10 +57,11 @@
 						mode="simple" />
 
 					<p:outputLabel value="Categoria:" />
-					<p:selectOneMenu value="#{produtoBean.produto.categoria.id}"
+					<p:selectOneMenu value="#{produtoBean.produto.categoria}"
 						required="true" requiredMessage="Informe a categoria do produto">
+						<f:selectItem itemLabel="" itemValue="" />
 						<f:selectItems value="#{categoriaBean.categorias}" var="item"
-							itemLabel="#{item.nome}" itemValue="#{item.id}" />
+							itemLabel="#{item.nome}" itemValue="#{item}" />
 					</p:selectOneMenu>
 
 				</p:panelGrid>
