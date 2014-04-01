@@ -19,21 +19,28 @@
 	<f:view>
 
 		<div id="header">
-			<f:view>
-				<!-- p:menu model="#{baseBean.menu}" rendered="false"  -->
-			</f:view>
+			<ul class="menu">
+				<li><a class="link" href="categorias.faces">Categoria</a></li>
+				<li><a class="link" href="produtos.faces">Produto</a></li>
+				<li><a class="link" href="usuarios.faces">Usuário</a></li>
+				<li><a class="link" href="clientes.faces">Cliente</a></li>
+			</ul>
 		</div>
 
-		<div id="content" >
+		<div id="content" class="content">
 			<ui:insert name="body">Body</ui:insert>
 		</div>
 
-		<div id="footer"
-			style="height: 30px; width: 99%; position:absolute; bottom: 0px; z-index: 5; text-align: center">
+		<p:spacer height="1px" />
+
+		<div id="footer">
 			<ui:insert name="rodape">
 				<p:panel>
-					<p:outputLabel rendered="#{not empty loginBean.usuario.email}"
-						value="#{loginBean.usuario.nome} (#{loginBean.usuario.email})" />
+					<p:outputLabel
+						rendered="#{not empty controladorLogin.usuario.email}"
+						value="#{loginBean.usuario.nome} (#{controladorLogin.usuario.email})" />
+					<p:outputLabel rendered="#{empty controladorLogin.usuario.email}"
+						value="Nenhum usuário selecionado" />
 				</p:panel>
 			</ui:insert>
 		</div>

@@ -14,7 +14,7 @@ import javax.persistence.NamedQuery;
         @NamedQuery(name = "produto.consultaTotalPorCategoria", query = "select count(p) from Produto p where categoria.id = :idCategoria"),
         @NamedQuery(name = "produto.consultaPorDescricao", query = "from Produto where descricao like :descricaoParcial"),
         @NamedQuery(name = "produto.consultaPorIntervaloPreco", query = "from Produto where preco >= ?1 and preco <= ?2") })
-public class Produto {
+public class Produto implements IPersistente {
     @Id
     @GeneratedValue
     private Long id;

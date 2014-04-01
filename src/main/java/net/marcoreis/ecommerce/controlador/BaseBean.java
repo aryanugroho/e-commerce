@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 public class BaseBean implements Serializable {
     private static final long serialVersionUID = -5895396595360064610L;
     protected static final Logger logger = Logger.getLogger(BaseBean.class);
+    protected static final String MENSAGEM_SUCESSO_GRAVACAO = "Dados gravados com sucesso";
     private Usuario usuario;
 
     public void setUsuario(Usuario usuario) {

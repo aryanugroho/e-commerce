@@ -6,13 +6,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import net.marcoreis.ecommerce.entidades.Categoria;
 import net.marcoreis.ecommerce.entidades.Produto;
+import net.marcoreis.ecommerce.negocio.ProdutoService;
 import net.marcoreis.ecommerce.util.IndexadorECommerce;
-import net.marcoreis.ecommerce.util.JPAUtil;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -24,6 +22,7 @@ public class ProdutoBean extends BaseBean {
     private static final long serialVersionUID = -6475971812078805662L;
     private static Logger logger = Logger.getLogger(ProdutoBean.class);
     private Produto produto;
+    private ProdutoService produtoService = new ProdutoService();
     private Collection<Produto> produtos;
     private UploadedFile especificacaoFabricante;
     private IndexadorECommerce indexador;
@@ -36,9 +35,7 @@ public class ProdutoBean extends BaseBean {
     }
 
     public void carregarProdutos() {
-        EntityManager em = JPAUtil.getInstance().getEntityManager();
-        produtos = em.createQuery("from Produto").getResultList();
-        em.close();
+        produtos = getProdutoService().carregarColecao(Produto.class);
     }
 
     public void setProduto(Produto produto) {
@@ -55,19 +52,13 @@ public class ProdutoBean extends BaseBean {
 
     public void salvar() {
         try {
-            EntityManager em = JPAUtil.getInstance().getEntityManager();
-            em.getTransaction().begin();
             if (getEspecificacaoFabricante() != null) {
                 byte[] dados = IOUtils.toByteArray(getEspecificacaoFabricante()
                         .getInputstream());
                 getProduto().setEspecificacaoFabricante(dados);
             }
-            produto = em.merge(getProduto());
-            em.persist(getProduto());
-            em.getTransaction().commit();
-            em.close();
-            //
-            infoMsg("Dados gravados com sucesso");
+            getProdutoService().salvar(getProduto());
+            infoMsg(MENSAGEM_SUCESSO_GRAVACAO);
         } catch (Exception e) {
             errorMsg(e);
         }
@@ -89,35 +80,28 @@ public class ProdutoBean extends BaseBean {
     }
 
     public String editar(Produto produto) {
-        this.produto = produto;
         return "produto?faces-redirect=true&includeViewParams=true";
     }
 
     public void excluir(Produto produto) {
-        EntityManager em = JPAUtil.getInstance().getEntityManager();
         try {
-            em.getTransaction().begin();
-            produto = em.merge(produto);
-            em.remove(produto);
-            em.getTransaction().commit();
-            produtos = em.createQuery("from Produto").getResultList();
+            getProdutoService().remove(getProduto());
+            carregarProdutos();
             infoMsg("Produdo excluído: " + produto.getNome());
         } catch (Exception e) {
-            errorMsg(e);
-        } finally {
-            em.close();
+            errorMsg(e.getLocalizedMessage());
         }
     }
 
     public void carregarProdutosPorCategoria(ValueChangeEvent evento) {
-        EntityManager em = JPAUtil.getInstance().getEntityManager();
-        String hql = "from Produto where categoria.id = :idCategoria";
-        Query query = em.createQuery(hql);
+        String filtro = "categoria.id = ?1";
         String newValue = evento.getNewValue().toString();
         Long idCategoria = Long.parseLong(newValue);
-        query.setParameter("idCategoria", idCategoria);
-        produtos = query.getResultList();
-        em.close();
+        produtos = getProdutoService().carregarColecao(Produto.class, filtro, idCategoria);
+    }
+
+    public ProdutoService getProdutoService() {
+        return produtoService;
     }
 
 }

@@ -20,8 +20,9 @@
 			<p:panel header="Produto"
 				style="margin-left: 24%; margin-right: 24%;">
 
-				<p:dataTable var="item" value="#{produtoBean.produtos}"
-					id="tabelaProdutos" sortBy="#{item.nome}">
+				<p:dataTable var="item" value="#{produtoBean.produtos}" rows="10"
+					paginator="true" paginatorAlwaysVisible="false" id="tabelaProdutos"
+					sortBy="#{item.nome}">
 					<p:column headerText="Nome" sortBy="#{item.nome}">
 						<h:outputText value="#{item.nome}" />
 					</p:column>
@@ -36,7 +37,7 @@
 					<p:column style="width: 50px;">
 						<p:commandButton type="submit" icon="ui-icon-pencil"
 							action="#{produtoBean.editar(item)}" ajax="false">
-							<f:param name="produto" value="#{item}" />
+<!-- 							<f:param name="produto" value="#{item}" /> -->
 							<f:setPropertyActionListener value="#{item}"
 								target="#{produtoBean.produto}" />
 						</p:commandButton>
