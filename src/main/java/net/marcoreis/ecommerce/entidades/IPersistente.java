@@ -1,5 +1,9 @@
 package net.marcoreis.ecommerce.entidades;
 
-public interface IPersistente {
+import java.io.Serializable;
+
+public interface IPersistente extends Serializable {
     Long getId();
+
+    void setId(Long id);
 }

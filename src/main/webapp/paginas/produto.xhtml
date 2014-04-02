@@ -12,7 +12,8 @@
 <ui:composition template="comum/template.xhtml">
 
 	<ui:define name="body">
-		<h:form>
+		<h:form enctype="multipart/form-data" acceptcharset="ISO-8859-1"
+			lang="pt_BR">
 			<p:messages id="messages" />
 
 			<p:spacer height="3px" />
@@ -22,9 +23,10 @@
 			</f:metadata>
 
 			<p:panel header="Produto"
-				style="margin-left: 24%; margin-right: 24%;">
+				style="margin-left: 14%; margin-right: 14%;">
 
-				<h:inputHidden value="#{produtoBean.produto.id}" />
+				<h:inputHidden value="#{produtoBean.produto.id}"
+					rendered="#{produtoBean.produto.id > 0}" />
 
 				<p:panelGrid columns="2">
 
@@ -52,9 +54,25 @@
 					<p:outputLabel value="Especificação da loja" />
 					<p:editor value="#{produtoBean.produto.especificacaoLoja}" />
 
-					<p:outputLabel value="Especificação do fabricante" />
+					<p:outputLabel value="Arquivo da especificação do fabricante" />
 					<p:fileUpload value="#{produtoBean.especificacaoFabricante}"
-						mode="simple" />
+						 id="uploadEspecificacaoFabricante" allowTypes="/(\.|\/)(pdf)$/" mode="simple" />
+
+					<p:outputLabel value="Download da especificação do fabricante" />
+					<p:commandButton icon="ui-icon-arrowthickstop-1-s" ajax="false">
+						<p:fileDownload
+							value="#{produtoBean.downloadEspecificacaoFabricante}" />
+					</p:commandButton>
+
+					<p:outputLabel value="Arquivo da foto" />
+					<p:fileUpload value="#{produtoBean.foto}" mode="simple"
+						id="uploadfotoProduto" />
+
+					<p:outputLabel value="Foto" />
+					<p:graphicImage cache="false"
+						value="#{imagemProdutoBean.conteudoImagem}">
+						<f:param value="#{produtoBean.produto.id}" name="id" />
+					</p:graphicImage>
 
 					<p:outputLabel value="Categoria:" />
 					<p:selectOneMenu value="#{produtoBean.produto.categoria}"
@@ -69,7 +87,7 @@
 				<p:spacer height="6px" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Salvar"
+					<p:commandButton value="Salvar" ajax="false"
 						actionListener="#{produtoBean.salvar}" icon="ui-icon-disk"
 						update="messages" />
 					<p:commandButton value="Voltar"

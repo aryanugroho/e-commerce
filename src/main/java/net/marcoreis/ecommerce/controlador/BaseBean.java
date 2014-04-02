@@ -41,4 +41,9 @@ public class BaseBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
+    public String getParametro(String parametro) {
+        return FacesContext.getCurrentInstance().getExternalContext()
+                .getRequestParameterMap().get(parametro);
+    }
+
 }

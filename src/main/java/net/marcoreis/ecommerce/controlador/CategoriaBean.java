@@ -8,6 +8,7 @@ import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
 
 import net.marcoreis.ecommerce.entidades.Categoria;
+import net.marcoreis.ecommerce.negocio.CategoriaService;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
 @ManagedBean
@@ -15,6 +16,7 @@ import net.marcoreis.ecommerce.util.JPAUtil;
 public class CategoriaBean extends BaseBean {
     private static final long serialVersionUID = 861905629535769221L;
     private Categoria categoria;
+    private CategoriaService categoriaService = new CategoriaService();
     private Collection<Categoria> categorias;
 
     public void setCategoria(Categoria categoria) {
@@ -60,18 +62,16 @@ public class CategoriaBean extends BaseBean {
     }
 
     public void excluir(Categoria categoria) {
-        EntityManager em = JPAUtil.getInstance().getEntityManager();
         try {
-            em.getTransaction().begin();
-            categoria = em.merge(categoria);
-            em.remove(categoria);
-            em.getTransaction().commit();
-            categorias = em.createQuery("from Categoria").getResultList();
-            infoMsg("Categoria excluída: " + categoria.getDescricao());
+            getCategoriaService().remove(categoria);
+            carregarCategorias();
+            infoMsg("Categoria excluída: " + categoria.getNome());
         } catch (Exception e) {
-            errorMsg(e);
-        } finally {
-            em.close();
+            errorMsg(e.getMessage());
         }
+    }
+
+    public CategoriaService getCategoriaService() {
+        return categoriaService;
     }
 }

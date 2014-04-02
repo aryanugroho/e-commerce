@@ -12,7 +12,9 @@
 <ui:composition template="comum/template.xhtml">
 
 	<ui:define name="body">
-		<h:form>
+
+		<h:form id="formulario">
+
 			<p:messages id="messages" />
 
 			<p:spacer height="3px" />
@@ -34,15 +36,15 @@
 					<p:column headerText="Categoria" sortBy="#{item.categoria.nome}">
 						<h:outputText value="#{item.categoria.nome}" />
 					</p:column>
-					<p:column style="width: 50px;">
+					<p:column style="width: 90px;">
 						<p:commandButton type="submit" icon="ui-icon-pencil"
 							action="#{produtoBean.editar(item)}" ajax="false">
-<!-- 							<f:param name="produto" value="#{item}" /> -->
 							<f:setPropertyActionListener value="#{item}"
 								target="#{produtoBean.produto}" />
 						</p:commandButton>
-						<p:commandButton type="submit" icon="ui-icon-trash"
-							action="#{produtoBean.excluir(item)}" update="tabelaProdutos" />
+						<p:commandButton icon="ui-icon-trash"
+							action="#{produtoBean.excluir(item)}"
+							update="tabelaProdutos,:formulario:messages" />
 					</p:column>
 				</p:dataTable>
 

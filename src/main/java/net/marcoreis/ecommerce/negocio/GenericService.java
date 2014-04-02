@@ -34,7 +34,7 @@ public class GenericService implements Serializable {
             jpaql += " where " + filtro;
             Query query = em.createQuery(jpaql);
             for (int i = 0; i < parametros.length; i++) {
-                query.setParameter(i, parametros[i]);
+                query.setParameter(i + 1, parametros[i]);
             }
             List lista = query.getResultList();
             return lista;
@@ -64,20 +64,23 @@ public class GenericService implements Serializable {
 
     public Object findById(Class clazz, Long id) {
         EntityManager em = JPAUtil.getInstance().getEntityManager();
-        return em.find(clazz, id);
+        Object obj = em.find(clazz, id);
+        em.clear();
+        return obj;
     }
 
     public void remove(IPersistente persistente) {
         EntityManager em = JPAUtil.getInstance().getEntityManager();
         try {
-            IPersistente obj = em.getReference(persistente.getClass(),
-                    persistente.getId());
             em.getTransaction().begin();
+            IPersistente obj = em.merge(persistente);
             em.remove(obj);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
             throw new RuntimeException(e);
+        } finally {
+            em.close();
         }
     }
 }

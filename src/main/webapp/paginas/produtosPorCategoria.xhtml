@@ -36,7 +36,8 @@
 				<p:spacer height="6px" />
 
 				<p:dataTable var="item" value="#{produtoBean.produtos}"
-					id="tabelaProdutos" sortBy="#{item.nome}"
+					id="tabelaProdutos" sortBy="#{item.nome}" rows="10"
+					paginator="true" paginatorAlwaysVisible="false"
 					emptyMessage="Nenhum produto para esta categoria">
 					<p:column headerText="Nome" sortBy="#{item.nome}">
 						<h:outputText value="#{item.nome}" />

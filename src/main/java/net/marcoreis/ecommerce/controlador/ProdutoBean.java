@@ -1,5 +1,6 @@
 package net.marcoreis.ecommerce.controlador;
 
+import java.io.ByteArrayInputStream;
 import java.util.Collection;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +15,8 @@ import net.marcoreis.ecommerce.util.IndexadorECommerce;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
 @ViewScoped
@@ -25,6 +28,7 @@ public class ProdutoBean extends BaseBean {
     private ProdutoService produtoService = new ProdutoService();
     private Collection<Produto> produtos;
     private UploadedFile especificacaoFabricante;
+    private UploadedFile foto;
     private IndexadorECommerce indexador;
 
     @PostConstruct
@@ -52,11 +56,19 @@ public class ProdutoBean extends BaseBean {
 
     public void salvar() {
         try {
-            if (getEspecificacaoFabricante() != null) {
+            //
+            if (getEspecificacaoFabricante() != null
+                    && getEspecificacaoFabricante().getSize() > 0) {
                 byte[] dados = IOUtils.toByteArray(getEspecificacaoFabricante()
                         .getInputstream());
                 getProduto().setEspecificacaoFabricante(dados);
             }
+            //
+            if (getFoto() != null && getFoto().getSize() > 0) {
+                byte[] dados = IOUtils.toByteArray(getFoto().getInputstream());
+                getProduto().setFoto(dados);
+            }
+            //
             getProdutoService().salvar(getProduto());
             infoMsg(MENSAGEM_SUCESSO_GRAVACAO);
         } catch (Exception e) {
@@ -85,9 +97,9 @@ public class ProdutoBean extends BaseBean {
 
     public void excluir(Produto produto) {
         try {
-            getProdutoService().remove(getProduto());
+            getProdutoService().remove(produto);
             carregarProdutos();
-            infoMsg("Produdo excluído: " + produto.getNome());
+            infoMsg("Produto excluído: " + produto.getNome());
         } catch (Exception e) {
             errorMsg(e.getLocalizedMessage());
         }
@@ -97,11 +109,25 @@ public class ProdutoBean extends BaseBean {
         String filtro = "categoria.id = ?1";
         String newValue = evento.getNewValue().toString();
         Long idCategoria = Long.parseLong(newValue);
-        produtos = getProdutoService().carregarColecao(Produto.class, filtro, idCategoria);
+        produtos = getProdutoService().carregarColecao(Produto.class, filtro,
+                idCategoria);
     }
 
     public ProdutoService getProdutoService() {
         return produtoService;
     }
 
+    public void setFoto(UploadedFile foto) {
+        this.foto = foto;
+    }
+
+    public UploadedFile getFoto() {
+        return foto;
+    }
+
+    public StreamedContent getDownloadEspecificacaoFabricante() {
+        return new DefaultStreamedContent(new ByteArrayInputStream(getProduto()
+                .getEspecificacaoFabricante()), "application/pdf",
+                "arquivo.pdf");
+    }
 }

@@ -1,5 +1,6 @@
 package net.marcoreis.ecommerce.entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import javax.persistence.NamedQuery;
         @NamedQuery(name = "produto.consultaPorDescricao", query = "from Produto where descricao like :descricaoParcial"),
         @NamedQuery(name = "produto.consultaPorIntervaloPreco", query = "from Produto where preco >= ?1 and preco <= ?2") })
 public class Produto implements IPersistente {
+    private static final long serialVersionUID = 3206252406240046848L;
     @Id
     @GeneratedValue
     private Long id;
@@ -24,7 +26,11 @@ public class Produto implements IPersistente {
     private String descricao;
     private String especificacaoLoja;
     @Lob
+    @Column(length = 1024 * 1024 * 5)
     private byte[] especificacaoFabricante;
+    @Lob
+    @Column(length = 1024 * 1024 * 5)
+    private byte[] foto;
     private Double preco;
 
     public Long getId() {
@@ -83,4 +89,11 @@ public class Produto implements IPersistente {
         this.preco = preco;
     }
 
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
 }

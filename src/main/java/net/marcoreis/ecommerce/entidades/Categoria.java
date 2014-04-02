@@ -7,7 +7,8 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQuery(name = "categoria.consultaPelaDescricao", query = "from Categoria where descricao like :descricao")
-public class Categoria {
+public class Categoria implements IPersistente {
+    private static final long serialVersionUID = 6833139035296224500L;
     private Long id;
     private String nome;
     private String descricao;
