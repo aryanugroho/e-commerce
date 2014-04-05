@@ -19,7 +19,7 @@
 			<p:spacer height="3px" />
 
 			<f:metadata>
-				<f:viewParam name="id" value="#{produtoBean.produto}" />
+				<f:viewParam name="id" value="#{produtoBean.produto.id}" />
 			</f:metadata>
 
 			<p:panel header="Produto"
@@ -68,8 +68,8 @@
 					<p:fileUpload value="#{produtoBean.foto}" mode="simple"
 						id="uploadfotoProduto" />
 
-					<p:outputLabel value="Foto" />
-					<p:graphicImage cache="false"
+					<p:outputLabel value="Foto" rendered="#{produtoBean.existeFoto}" />
+					<p:graphicImage cache="false" rendered="#{produtoBean.existeFoto}"
 						value="#{imagemProdutoBean.conteudoImagem}">
 						<f:param value="#{produtoBean.produto.id}" name="id" />
 					</p:graphicImage>

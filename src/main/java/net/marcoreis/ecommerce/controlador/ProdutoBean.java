@@ -130,4 +130,12 @@ public class ProdutoBean extends BaseBean {
                 .getEspecificacaoFabricante()), "application/pdf",
                 "arquivo.pdf");
     }
+
+    public boolean isExisteFoto() {
+        try {
+            return getProduto().getFoto().length > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
