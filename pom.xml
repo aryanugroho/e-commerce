@@ -22,6 +22,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<version.war.plugin>2.1.1</version.war.plugin>
+		<lucene.version>4.8.1</lucene.version>
 	</properties>
 
 	<repositories>
@@ -73,13 +74,13 @@
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-core</artifactId>
-			<version>4.6.0</version>
+			<version>${lucene.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-queries</artifactId>
-			<version>4.6.0</version>
+			<version>${lucene.version}</version>
 		</dependency>
 
 		<dependency>
@@ -91,19 +92,19 @@
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-analyzers-common</artifactId>
-			<version>4.6.0</version>
+			<version>${lucene.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-suggest</artifactId>
-			<version>4.6.0</version>
+			<version>${lucene.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-queryparser</artifactId>
-			<version>4.6.0</version>
+			<version>${lucene.version}</version>
 		</dependency>
 
 		<dependency>

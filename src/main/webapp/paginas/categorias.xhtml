@@ -31,8 +31,11 @@
 					</p:column>
 					<p:column style="width: 90px;">
 						<p:commandButton type="submit"
-							action="#{categoriaBean.editar(item)}" icon="ui-icon-pencil"
-							ajax="false" />
+							action="categoria?faces-redirect=true&amp;includeViewParams=true"
+							icon="ui-icon-pencil" ajax="false">
+							<f:setPropertyActionListener target="#{categoriaBean.categoria}"
+								value="#{item}" />
+						</p:commandButton>
 						<p:commandButton icon="ui-icon-trash"
 							update="tabelaCategorias,:formulario:messages"
 							action="#{categoriaBean.excluir(item)}" />

@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 
 import net.marcoreis.ecommerce.entidades.Categoria;
@@ -12,7 +12,7 @@ import net.marcoreis.ecommerce.negocio.CategoriaService;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class CategoriaBean extends BaseBean {
     private static final long serialVersionUID = 861905629535769221L;
     private Categoria categoria;
@@ -56,10 +56,9 @@ public class CategoriaBean extends BaseBean {
         em.close();
     }
 
-    public String editar(Categoria categoria) {
-        this.categoria = categoria;
-        return "categoria";
-    }
+//    public String editar(Categoria categoria) {
+//        return "categoria";
+//    }
 
     public void excluir(Categoria categoria) {
         try {

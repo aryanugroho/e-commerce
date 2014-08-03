@@ -12,6 +12,11 @@
 <ui:composition template="comum/template.xhtml">
 
 	<ui:define name="body">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{categoriaBean.categoria}" />
+		</f:metadata>
+
 		<h:form>
 			<p:messages id="messages" />
 
@@ -42,9 +47,8 @@
 				<f:facet name="footer">
 					<p:commandButton value="Salvar" ajax="false"
 						actionListener="#{categoriaBean.salvar()}" icon="ui-icon-disk" />
-					<p:commandButton value="Voltar" type="submit"
-						action="categorias" ajax="false"
-						icon="ui-icon-arrowreturnthick-1-w" />
+					<p:commandButton value="Voltar" type="submit" action="categorias"
+						ajax="false" icon="ui-icon-arrowreturnthick-1-w" />
 				</f:facet>
 			</p:panel>
 

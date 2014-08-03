@@ -28,9 +28,13 @@
 					<p:column headerText="e-mail">
 						<h:outputText value="#{item.email}" />
 					</p:column>
-					<p:column style="width: 50px;">
-						<p:commandButton icon="ui-icon-pencil"
-							action="#{usuarioBean.editar(item)}" />
+					<p:column style="width: 80px;">
+						<p:commandButton icon="ui-icon-pencil" ajax="false"
+							action="usuario?faces-redirect=true&amp;includeViewParams=true">
+							<f:param name="id" value="item.id" />
+							<f:setPropertyActionListener target="#{usuarioBean.usuario.id}"
+								value="#{item.id}" />
+						</p:commandButton>
 						<p:commandButton icon="ui-icon-trash" />
 					</p:column>
 				</p:dataTable>

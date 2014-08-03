@@ -12,13 +12,14 @@ import javax.persistence.NamedQuery;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "usuario.consultaAcessoDia", query = "from Usuario where cast(ultimoLogin as date) = :data")
-public class Usuario {
+public class Usuario implements IPersistente {
     @Id
     @GeneratedValue
     private Long id;
     private String email;
     private String nome;
     private Date ultimoLogin;
+    private static final long serialVersionUID = 8316978314047208790L;
 
     public Long getId() {
         return id;

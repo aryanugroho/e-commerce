@@ -38,10 +38,12 @@
 					</p:column>
 					<p:column style="width: 90px;">
 						<p:commandButton type="submit" icon="ui-icon-pencil"
-							action="#{produtoBean.editar(item)}" ajax="false">
+							action="produto?faces-redirect=true&amp;includeViewParams=true"
+							ajax="false">
 							<f:setPropertyActionListener value="#{item}"
 								target="#{produtoBean.produto}" />
 						</p:commandButton>
+
 						<p:commandButton icon="ui-icon-trash"
 							action="#{produtoBean.excluir(item)}"
 							update="tabelaProdutos,:formulario:messages" />
@@ -51,8 +53,8 @@
 				<p:spacer height="6px" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Novo" action="produto" ajax="false"
-						icon="ui-icon-document" />
+					<p:commandButton value="Novo" action="produto?faces-redirect=true"
+						ajax="false" icon="ui-icon-document" />
 				</f:facet>
 			</p:panel>
 

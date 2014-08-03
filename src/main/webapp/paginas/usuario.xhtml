@@ -12,13 +12,19 @@
 <ui:composition template="comum/template.xhtml">
 
 	<ui:define name="body">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{usuarioBean.usuario.id}" />
+		</f:metadata>
+
 		<h:form>
+
 			<p:messages id="messages" />
 
 			<p:spacer height="3px" />
 
 			<p:panel header="Usuário"
-				style="margin-left: 24%; margin-right: 24%;">
+				style="margin-left: 30%; margin-right: 30%;">
 
 
 				<p:panelGrid columns="2">
@@ -27,10 +33,10 @@
 					<p:inputText value="#{usuarioBean.usuario.id}" disabled="true" />
 
 					<p:outputLabel value="Nome:" />
-					<p:inputText value="#{usuarioBean.usuario.nome}" />
+					<p:inputText value="#{usuarioBean.usuario.nome}" size="50" />
 
 					<p:outputLabel value="e-mail:" />
-					<p:inputText value="#{usuarioBean.usuario.email}"
+					<p:inputText value="#{usuarioBean.usuario.email}" size="50"
 						requiredMessage="Informe um e-mail"
 						validatorMessage="e-mail inválido">
 						<f:validateRegex
@@ -42,9 +48,9 @@
 				<p:spacer height="6px" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Salvar" ajax="false"
+					<p:commandButton value="Salvar" update="messages"
 						actionListener="#{usuarioBean.salvar}" icon="ui-icon-disk" />
-					<p:commandButton value="Voltar" type="submit"
+					<p:commandButton value="Voltar"
 						action="usuarios?faces-redirect=true" ajax="false"
 						icon="ui-icon-arrowreturnthick-1-w" />
 				</f:facet>

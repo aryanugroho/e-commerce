@@ -12,15 +12,17 @@
 <ui:composition template="comum/template.xhtml">
 
 	<ui:define name="body">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{produtoBean.produto}" />
+		</f:metadata>
+
 		<h:form enctype="multipart/form-data" acceptcharset="ISO-8859-1"
 			lang="pt_BR">
 			<p:messages id="messages" />
 
 			<p:spacer height="3px" />
 
-			<f:metadata>
-				<f:viewParam name="id" value="#{produtoBean.produto.id}" />
-			</f:metadata>
 
 			<p:panel header="Produto"
 				style="margin-left: 14%; margin-right: 14%;">

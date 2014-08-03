@@ -4,14 +4,13 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 
-import org.apache.log4j.Logger;
+import net.marcoreis.ecommerce.entidades.Usuario;
+import net.marcoreis.ecommerce.util.JPAUtil;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import net.marcoreis.ecommerce.entidades.Usuario;
-import net.marcoreis.ecommerce.util.JPAUtil;
 
 public class TesteAlteraUsuario {
 

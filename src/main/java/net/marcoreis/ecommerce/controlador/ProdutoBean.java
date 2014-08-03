@@ -5,8 +5,8 @@ import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.view.ViewScoped;
 
 import net.marcoreis.ecommerce.entidades.Categoria;
 import net.marcoreis.ecommerce.entidades.Produto;
@@ -31,8 +31,13 @@ public class ProdutoBean extends BaseBean {
     private UploadedFile foto;
     private IndexadorECommerce indexador;
 
+    public void preRender() {
+        logger.info("=> preRender()");
+    }
+
     @PostConstruct
     public void init() {
+        logger.info("=> init()");
         produto = new Produto();
         produto.setCategoria(new Categoria());
         carregarProdutos();
@@ -43,6 +48,7 @@ public class ProdutoBean extends BaseBean {
     }
 
     public void setProduto(Produto produto) {
+        logger.info("=> setProduto - " + produto);
         this.produto = produto;
     }
 
@@ -92,7 +98,7 @@ public class ProdutoBean extends BaseBean {
     }
 
     public String editar(Produto produto) {
-        return "produto?faces-redirect=true&includeViewParams=true";
+        return "produto?faces-redirect=true";
     }
 
     public void excluir(Produto produto) {

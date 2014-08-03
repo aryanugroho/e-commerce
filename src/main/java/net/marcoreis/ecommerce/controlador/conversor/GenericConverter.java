@@ -19,6 +19,7 @@ public abstract class GenericConverter implements Converter {
         try {
             Long id = Long.parseLong(value);
             Object objeto = new GenericService().findById(getClasse(), id);
+            logger.info(objeto);
             return objeto;
         } catch (Exception e) {
             return null;
