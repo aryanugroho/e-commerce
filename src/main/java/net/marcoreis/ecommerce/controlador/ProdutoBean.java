@@ -11,7 +11,6 @@ import javax.faces.view.ViewScoped;
 import net.marcoreis.ecommerce.entidades.Categoria;
 import net.marcoreis.ecommerce.entidades.Produto;
 import net.marcoreis.ecommerce.negocio.ProdutoService;
-import net.marcoreis.ecommerce.util.IndexadorECommerce;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -29,7 +28,6 @@ public class ProdutoBean extends BaseBean {
     private Collection<Produto> produtos;
     private UploadedFile especificacaoFabricante;
     private UploadedFile foto;
-    private IndexadorECommerce indexador;
 
     public void preRender() {
         logger.info("=> preRender()");
@@ -88,13 +86,6 @@ public class ProdutoBean extends BaseBean {
 
     public UploadedFile getEspecificacaoFabricante() {
         return especificacaoFabricante;
-    }
-
-    public IndexadorECommerce getIndexador() {
-        if (indexador == null) {
-            indexador = new IndexadorECommerce();
-        }
-        return indexador;
     }
 
     public String editar(Produto produto) {
