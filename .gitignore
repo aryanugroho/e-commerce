@@ -4,5 +4,6 @@
 *.jar
 *.war
 *.ear
-target/
 /target
+.directory
+.DS_Store
