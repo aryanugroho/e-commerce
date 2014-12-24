@@ -32,7 +32,7 @@ public class TesteInsereProduto {
 
     @Test
     public void inserirProduto() {
-        Long idCategoria = 12l;
+        Long idCategoria = 1l;
         Categoria categoria = em.find(Categoria.class, idCategoria);
         Assert.assertNotNull("Categoria não cadastrada", categoria);
         Produto produto = new Produto();
