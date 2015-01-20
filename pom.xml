@@ -22,7 +22,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<version.war.plugin>2.1.1</version.war.plugin>
-		<lucene.version>4.8.1</lucene.version>
+		<lucene.version>4.10.3</lucene.version>
 		<hibernate.version>4.3.4.Final</hibernate.version>
 	</properties>
 
@@ -139,6 +139,60 @@
 			<version>4.11</version>
 		</dependency>
 
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.lucene</groupId> -->
+		<!-- <artifactId>lucene-core</artifactId> -->
+		<!-- <version>${lucene.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.lucene</groupId> -->
+		<!-- <artifactId>lucene-queries</artifactId> -->
+		<!-- <version>${lucene.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.lucene</groupId> -->
+		<!-- <artifactId>lucene-analyzers-common</artifactId> -->
+		<!-- <version>${lucene.version}</version> -->
+		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-queryparser</artifactId>
+			<version>${lucene.version}</version>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.lucene</groupId> -->
+		<!-- <artifactId>lucene-highlighter</artifactId> -->
+		<!-- <version>${lucene.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.lucene</groupId> -->
+		<!-- <artifactId>lucene-suggest</artifactId> -->
+		<!-- <version>${lucene.version}</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.solr</groupId> -->
+		<!-- <artifactId>solr-solrj</artifactId> -->
+		<!-- <version>${lucene.version}</version> -->
+		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>5.0.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search</artifactId>
+			<version>5.0.0.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>

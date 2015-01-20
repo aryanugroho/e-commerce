@@ -1,7 +1,10 @@
 package net.marcoreis.ecommerce.entidades;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
@@ -9,7 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import net.marcoreis.ecommerce.util.UltimaAtualizacaoListener;
+
 @Entity
+@EntityListeners(value = UltimaAtualizacaoListener.class)
 @NamedQueries({
         @NamedQuery(name = "produto.consultaTotal", query = "select count(p) from Produto p"),
         @NamedQuery(name = "produto.consultaTotalPorCategoria", query = "select count(p) from Produto p where categoria.id = :idCategoria"),
@@ -32,6 +38,9 @@ public class Produto implements IPersistente {
     @Column(length = 1024 * 1024 * 5)
     private byte[] foto;
     private Double preco;
+    @Column(nullable = false)
+    private Timestamp atualizacao;
+    private Timestamp dataAtualizacao;
 
     public Long getId() {
         return id;
@@ -95,5 +104,21 @@ public class Produto implements IPersistente {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    public void setAtualizacao(Timestamp atualizacao) {
+        this.atualizacao = atualizacao;
+    }
+
+    public Timestamp getAtualizacao() {
+        return atualizacao;
+    }
+
+    public Timestamp getDataAtualizacao() {
+        return dataAtualizacao;
+    }
+
+    public void setDataAtualizacao(Timestamp dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
     }
 }
