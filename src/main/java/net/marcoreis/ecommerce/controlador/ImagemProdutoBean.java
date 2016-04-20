@@ -23,25 +23,24 @@ public class ImagemProdutoBean extends BaseBean {
 
     @PostConstruct
     public void init() {
-        produto = new Produto();
+	produto = new Produto();
     }
 
     public StreamedContent getConteudoImagem() {
-        try {
-            FacesContext context = FacesContext.getCurrentInstance();
-            if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-                return new DefaultStreamedContent();
-            }
-            String idS = getParametro("id");
-            Long id = Long.parseLong(idS);
-            produto = (Produto) new GenericService()
-                    .findById(Produto.class, id);
-            InputStream is = new ByteArrayInputStream(produto.getFoto());
-            DefaultStreamedContent dsc = new DefaultStreamedContent(is);
-            return dsc;
-        } catch (Exception e) {
-            return new DefaultStreamedContent();
-        }
+	try {
+	    FacesContext context = FacesContext.getCurrentInstance();
+	    if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+		return new DefaultStreamedContent();
+	    }
+	    String idS = getParametro("id");
+	    Long id = Long.parseLong(idS);
+	    produto = (Produto) new GenericService().findById(Produto.class, id);
+	    // InputStream is = new ByteArrayInputStream(produto.getFoto());
+	    // DefaultStreamedContent dsc = new DefaultStreamedContent(is);
+	    return null;
+	} catch (Exception e) {
+	    return new DefaultStreamedContent();
+	}
     }
 
 }

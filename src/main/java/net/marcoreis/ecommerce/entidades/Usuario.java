@@ -16,7 +16,7 @@ import net.marcoreis.ecommerce.util.UltimaAtualizacaoListener;
 @Entity
 @EntityListeners(value = UltimaAtualizacaoListener.class)
 @Inheritance(strategy = InheritanceType.JOINED)
-@NamedQuery(name = "usuario.consultaAcessoDia", query = "from Usuario where cast(ultimoLogin as date) = :data")
+@NamedQuery(name = "usuario.consultaAcessoDia", query = "select u from Usuario u where u.ultimoLogin = :data")
 public class Usuario implements IPersistente {
     @Id
     @GeneratedValue

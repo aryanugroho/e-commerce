@@ -19,8 +19,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.compiler.plugin>2.3.1</version.compiler.plugin>
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 		<version.war.plugin>2.1.1</version.war.plugin>
 		<lucene.version>4.10.3</lucene.version>
 		<hibernate.version>4.3.4.Final</hibernate.version>

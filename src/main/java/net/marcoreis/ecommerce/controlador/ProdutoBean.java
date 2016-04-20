@@ -37,7 +37,7 @@ public class ProdutoBean extends BaseBean {
     public void init() {
         logger.info("=> init()");
         produto = new Produto();
-        produto.setCategoria(new Categoria());
+//        produto.setCategoria(new Categoria());
         carregarProdutos();
     }
 
@@ -70,7 +70,7 @@ public class ProdutoBean extends BaseBean {
             //
             if (getFoto() != null && getFoto().getSize() > 0) {
                 byte[] dados = IOUtils.toByteArray(getFoto().getInputstream());
-                getProduto().setFoto(dados);
+//                getProduto().setFoto(dados);
             }
             //
             getProdutoService().salvar(getProduto());
@@ -130,7 +130,7 @@ public class ProdutoBean extends BaseBean {
 
     public boolean isExisteFoto() {
         try {
-            return getProduto().getFoto().length > 0;
+            return false;//getProduto().getFoto().length > 0;
         } catch (Exception e) {
             return false;
         }

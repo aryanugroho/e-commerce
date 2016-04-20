@@ -12,7 +12,7 @@ import net.marcoreis.ecommerce.util.UltimaAtualizacaoListener;
 
 @Entity
 @EntityListeners(value = UltimaAtualizacaoListener.class)
-@NamedQuery(name = "categoria.consultaPelaDescricao", query = "from Categoria where descricao like :descricao")
+@NamedQuery(name = "categoria.consultaPelaDescricao", query = "select c from Categoria c where c.descricao like :descricao")
 public class Categoria implements IPersistente {
     private static final long serialVersionUID = 6833139035296224500L;
     private Long id;

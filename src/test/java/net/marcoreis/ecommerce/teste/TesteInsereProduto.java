@@ -36,7 +36,7 @@ public class TesteInsereProduto {
         Categoria categoria = em.find(Categoria.class, idCategoria);
         Assert.assertNotNull("Categoria não cadastrada", categoria);
         Produto produto = new Produto();
-        produto.setCategoria(categoria);
+//        produto.setCategoria(categoria);
         produto.setDescricao("Colcha para cama de solteiro 120cm x 210cm");
         produto.setNome("Colcha para cama de solteiro");
         produto.setPreco(150.00);
