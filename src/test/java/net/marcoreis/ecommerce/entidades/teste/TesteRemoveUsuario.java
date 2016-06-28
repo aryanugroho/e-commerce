@@ -1,6 +1,4 @@
-package net.marcoreis.ecommerce.teste;
-
-import java.util.Date;
+package net.marcoreis.ecommerce.entidades.teste;
 
 import javax.persistence.EntityManager;
 
@@ -12,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TesteAlteraUsuario {
+public class TesteRemoveUsuario {
 
     private EntityManager em;
 
@@ -29,14 +27,10 @@ public class TesteAlteraUsuario {
     }
 
     @Test
-    public void alterarUsuario() {
-        Long id = 2l;
+    public void removerUsuario() {
+        Long id = 5l;
         Usuario usuario = em.find(Usuario.class, id);
         Assert.assertNotNull("Usuario não cadastrado", usuario);
-        usuario.setEmail("diego@lucas.net");
-        usuario.setNome("Diego Lucas");
-        Date data = new Date();
-        usuario.setUltimoLogin(data);
-        em.persist(usuario);
+        em.remove(usuario);
     }
 }

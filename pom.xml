@@ -22,8 +22,10 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<version.war.plugin>2.1.1</version.war.plugin>
-		<lucene.version>4.10.3</lucene.version>
-		<hibernate.version>4.3.4.Final</hibernate.version>
+		<lucene.version>6.1.0</lucene.version>
+		<hibernate.version>5.1.0.Final</hibernate.version>
+		<hibernate.entitymanager.version>5.1.0.Final</hibernate.entitymanager.version>
+		<hibernate.search.version>5.5.2.Final</hibernate.search.version>
 	</properties>
 
 	<repositories>
@@ -69,7 +71,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernate.version}</version>
+			<version>${hibernate.entitymanager.version}</version>
 		</dependency>
 
 		<dependency>
@@ -185,13 +187,13 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-orm</artifactId>
-			<version>5.0.0.Final</version>
+			<version>${hibernate.search.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search</artifactId>
-			<version>5.0.0.Final</version>
+			<version>${hibernate.search.version}</version>
 		</dependency>
 	</dependencies>
 

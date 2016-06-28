@@ -1,4 +1,4 @@
-package net.marcoreis.ecommerce.teste;
+package net.marcoreis.ecommerce.entidades.teste;
 
 import java.util.List;
 
