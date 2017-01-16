@@ -1,6 +1,5 @@
 package net.marcoreis.ecommerce.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -10,11 +9,8 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.util.Version;
 import org.apache.tika.Tika;
 import org.apache.tika.exception.TikaException;
 
@@ -49,15 +45,20 @@ public class IndexadorECommerce {
 		return tika;
 	}
 
-	public void indexarProdutos() throws IOException, TikaException {
-		EntityManager em = JPAUtil.getInstance().getEntityManager();
-		List<Produto> produtos = em.createQuery("from Produto").getResultList();
+	public void indexarProdutos()
+			throws IOException, TikaException {
+		EntityManager em = JPAUtil.getInstance()
+				.getEntityManager();
+		String cql = "select p from Produto p";
+		List<Produto> produtos = em.createQuery(cql)
+				.getResultList();
 		for (Produto prod : produtos) {
 			indexarProduto(prod);
 		}
 	}
 
-	private void indexarProduto(Produto prod) throws IOException, TikaException {
+	private void indexarProduto(Produto prod)
+			throws IOException, TikaException {
 		Document doc = new Document();
 		// doc.add(new Field("id.produto", prod.getId().toString(), Store.YES,
 		// Index.ANALYZED));
@@ -85,7 +86,8 @@ public class IndexadorECommerce {
 		// doc.add(new Field("textoCompleto", textoCompleto.toString(),
 		// Store.YES, Index.ANALYZED));
 		// doc.add(new Field("tabela", "produto", Store.YES, Index.ANALYZED));
-		Term termoIdentificacao = new Term("id.produto", prod.getId().toString());
+		Term termoIdentificacao = new Term("id.produto",
+				prod.getId().toString());
 		writer.updateDocument(termoIdentificacao, doc);
 	}
 

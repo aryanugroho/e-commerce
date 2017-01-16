@@ -1,6 +1,5 @@
 package net.marcoreis.ecommerce.util;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +13,6 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
-import org.apache.lucene.store.FSDirectory;
 
 public class UtilBusca {
 	private static Logger logger = Logger.getLogger(UtilBusca.class.getName());
@@ -22,8 +20,7 @@ public class UtilBusca {
 	private IndexSearcher buscador;
 	private IndexReader reader;
 	private long duracaoBusca;
-	private Integer quantidadeLimiteRegistros = 5000;
-	private String diretorioIndice;
+	private Integer quantidadeLimiteRegistros = 50;
 
 	public void reopen() {
 		try {
