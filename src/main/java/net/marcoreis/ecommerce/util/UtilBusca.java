@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 
@@ -64,8 +62,7 @@ public class UtilBusca {
 		TopDocs hits = null;
 		try {
 			long time = System.currentTimeMillis();
-			QueryParser parser = new QueryParser("",
-					new StandardAnalyzer());
+			QueryParser parser = null;
 			Query query = parser.parse(consulta);
 			hits = getBuscador().search(query,
 					quantidadeLimiteRegistros);

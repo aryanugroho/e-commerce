@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
@@ -25,7 +23,7 @@ public class IndexadorECommerce {
 		try {
 			// diretorio = FSDirectory.open(new
 			// File(Constantes.DIRETORIO_INDICE));
-			Analyzer analyzer = new StandardAnalyzer();
+			// Analyzer analyzer = new StandardAnalyzer();
 			// IndexWriterConfig config = new
 			// IndexWriterConfig(Version.LUCENE_4_10_3, analyzer);
 			// writer = new IndexWriter(diretorio, config);

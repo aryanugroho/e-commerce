@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,7 +17,7 @@ import net.marcoreis.ecommerce.util.IPersistente;
 @NamedQuery(name = "usuario.consultaAcessoDia", query = "select u from Usuario u where u.ultimoLogin = :data")
 public class Usuario implements IPersistente {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String email;
 	private String nome;

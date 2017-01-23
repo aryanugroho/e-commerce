@@ -6,8 +6,10 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -25,7 +27,7 @@ public class Produto implements IPersistente {
 
 	//
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String descricao;
@@ -35,11 +37,11 @@ public class Produto implements IPersistente {
 	@Column(length = 1024 * 1024 * 5)
 	private byte[] especificacaoFabricante;
 	@ManyToMany
-	@JoinTable(name = "produto_categoria")
+	@JoinTable(name = "Produto_Categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<Categoria>(
 			0);
 	@ManyToMany
-	@JoinTable(name = "produto_atributo")
+	@JoinTable(name = "Produto_Atributo", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "atributo_id"))
 	private Set<Atributo> atributos = new HashSet<Atributo>(0);
 	//
 

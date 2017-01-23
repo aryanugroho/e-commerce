@@ -2,6 +2,7 @@ package net.marcoreis.ecommerce.entidades;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import net.marcoreis.ecommerce.util.IPersistente;
@@ -10,7 +11,7 @@ import net.marcoreis.ecommerce.util.IPersistente;
 public class Atributo implements IPersistente {
 	private static final long serialVersionUID = 1211598398995817325L;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String valor;

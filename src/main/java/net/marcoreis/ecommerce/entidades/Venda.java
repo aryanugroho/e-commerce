@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import net.marcoreis.ecommerce.util.IPersistente;
@@ -12,7 +13,7 @@ import net.marcoreis.ecommerce.util.IPersistente;
 public class Venda implements IPersistente {
 	private static final long serialVersionUID = -4519913495960906821L;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date data;
 
