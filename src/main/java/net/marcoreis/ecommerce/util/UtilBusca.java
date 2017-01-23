@@ -15,7 +15,8 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 
 public class UtilBusca {
-	private static Logger logger = Logger.getLogger(UtilBusca.class.getName());
+	private static Logger logger = Logger
+			.getLogger(UtilBusca.class.getName());
 	private Directory diretorio;
 	private IndexSearcher buscador;
 	private IndexReader reader;
@@ -31,11 +32,6 @@ public class UtilBusca {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public UtilBusca(String diretorioIndice) throws IOException {
-		this.diretorioIndice = diretorioIndice;
-		reopen();
 	}
 
 	public void fecha() {
@@ -68,9 +64,11 @@ public class UtilBusca {
 		TopDocs hits = null;
 		try {
 			long time = System.currentTimeMillis();
-			QueryParser parser = new QueryParser("", new StandardAnalyzer());
+			QueryParser parser = new QueryParser("",
+					new StandardAnalyzer());
 			Query query = parser.parse(consulta);
-			hits = getBuscador().search(query, quantidadeLimiteRegistros);
+			hits = getBuscador().search(query,
+					quantidadeLimiteRegistros);
 			duracaoBusca = System.currentTimeMillis() - time;
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -78,16 +76,4 @@ public class UtilBusca {
 		return hits;
 	}
 
-	public static void main(String[] args) {
-		try {
-			UtilBusca buscador = new UtilBusca(System.getProperty("user.home") + "/livro-lucene/indice-wikipedia");
-			TopDocs topDocs = buscador.busca("text:programador");
-			for (ScoreDoc sd : topDocs.scoreDocs) {
-				Document doc = buscador.doc(sd.doc);
-				System.out.println(doc.get("id") + " - " + doc.get("title"));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }

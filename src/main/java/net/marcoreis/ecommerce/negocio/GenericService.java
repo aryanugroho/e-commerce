@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import net.marcoreis.ecommerce.entidades.IPersistente;
+import net.marcoreis.ecommerce.util.IPersistente;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
 public class GenericService implements Serializable {

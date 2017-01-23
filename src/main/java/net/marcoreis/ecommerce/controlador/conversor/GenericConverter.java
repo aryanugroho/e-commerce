@@ -4,8 +4,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import net.marcoreis.ecommerce.entidades.IPersistente;
 import net.marcoreis.ecommerce.negocio.GenericService;
+import net.marcoreis.ecommerce.util.IPersistente;
 
 import org.apache.log4j.Logger;
 
