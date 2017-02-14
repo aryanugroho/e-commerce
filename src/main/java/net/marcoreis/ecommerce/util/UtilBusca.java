@@ -12,6 +12,16 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 
+/**
+ * 
+ * # Esta é uma classe de teste
+ * ## Este é um título
+ * 
+ * ====
+ * 
+ * @author marco
+ *
+ */
 public class UtilBusca {
 	private static Logger logger = Logger
 			.getLogger(UtilBusca.class.getName());
