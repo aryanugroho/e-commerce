@@ -23,8 +23,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<version.war.plugin>2.1.1</version.war.plugin>
 		<lucene.version>6.1.0</lucene.version>
-		<hibernate.version>5.1.0.Final</hibernate.version>
-		<hibernate.entitymanager.version>5.1.0.Final</hibernate.entitymanager.version>
+		<hibernate.version>5.2.6.Final</hibernate.version>
+		<hibernate.entitymanager.version>5.2.6.Final</hibernate.entitymanager.version>
 		<hibernate.search.version>5.5.2.Final</hibernate.search.version>
 	</properties>
 
@@ -58,20 +58,14 @@
 
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>${hibernate.entitymanager.version}</version>
 		</dependency>
 
 		<dependency>
@@ -222,7 +216,7 @@
 				<configuration>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.10.4</version>
