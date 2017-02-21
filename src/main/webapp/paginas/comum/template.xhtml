@@ -37,9 +37,9 @@
 			<ui:insert name="rodape">
 				<p:panel>
 					<p:outputLabel
-						rendered="#{not empty controladorLogin.usuario.email}"
-						value="#{loginBean.usuario.nome} (#{controladorLogin.usuario.email})" />
-					<p:outputLabel rendered="#{empty controladorLogin.usuario.email}"
+						rendered="#{not empty loginBean.usuario.nome}"
+						value="#{loginBean.usuario.nome} (#{loginBean.usuario.email})" />
+					<p:outputLabel rendered="#{empty loginBean.usuario.nome}"
 						value="Nenhum usuário selecionado" />
 				</p:panel>
 			</ui:insert>

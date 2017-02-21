@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,11 +38,11 @@ public class Produto implements IPersistente {
 	@Column(length = 1024 * 1024 * 5)
 	private byte[] especificacaoFabricante;
 	@ManyToMany
-	@JoinTable(name = "Produto_Categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "ProdutoCategoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<Categoria>(
 			0);
-	@ManyToMany
-	@JoinTable(name = "Produto_Atributo", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "atributo_id"))
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "ProdutoAtributo", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "atributo_id"))
 	private Set<Atributo> atributos = new HashSet<Atributo>(0);
 	//
 

@@ -30,7 +30,7 @@ public class TesteAlteraUsuario {
 
     @Test
     public void alterarUsuario() {
-        Long id = 2l;
+        Long id = 1l;
         Usuario usuario = em.find(Usuario.class, id);
         Assert.assertNotNull("Usuario não cadastrado", usuario);
         usuario.setEmail("diego@lucas.net");

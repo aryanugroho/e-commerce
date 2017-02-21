@@ -12,25 +12,27 @@ import org.junit.Test;
 
 public class TesteRemoveUsuario {
 
-    private EntityManager em;
+	private EntityManager em;
 
-    @Before
-    public void inicializar() {
-        em = JPAUtil.getInstance().getEntityManager();
-        em.getTransaction().begin();
-    }
+	@Before
+	public void inicializar() {
+		em = JPAUtil.getInstance().getEntityManager();
+		em.getTransaction().begin();
+	}
 
-    @After
-    public void finalizar() {
-        em.getTransaction().commit();
-        em.close();
-    }
+	@After
+	public void finalizar() {
+		em.getTransaction().commit();
+		em.close();
+	}
 
-    @Test
-    public void removerUsuario() {
-        Long id = 5l;
-        Usuario usuario = em.find(Usuario.class, id);
-        Assert.assertNotNull("Usuario não cadastrado", usuario);
-        em.remove(usuario);
-    }
+	@Test
+	public void removerUsuario() {
+		Usuario usuario = new Usuario();
+		usuario.setEmail("teste");
+		usuario.setNome("Nome de teste");
+		em.persist(usuario);
+		Assert.assertNotNull("Usuario não cadastrado", usuario);
+		em.remove(usuario);
+	}
 }
