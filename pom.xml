@@ -171,6 +171,13 @@
 			<version>${lucene.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>${lucene.version}</version>
+		</dependency>
+
+
 		<!-- <dependency> -->
 		<!-- <groupId>org.apache.solr</groupId> -->
 		<!-- <artifactId>solr-solrj</artifactId> -->
