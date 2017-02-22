@@ -1,7 +1,5 @@
 package net.marcoreis.ecommerce.entidades;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +17,6 @@ public class Categoria implements IPersistente {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private Timestamp dataAtualizacao;
 
 	public Long getId() {
 		return id;
@@ -53,11 +50,4 @@ public class Categoria implements IPersistente {
 		return getId() == other.getId();
 	}
 
-	public Timestamp getDataAtualizacao() {
-		return dataAtualizacao;
-	}
-
-	public void setDataAtualizacao(Timestamp dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
 }

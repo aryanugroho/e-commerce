@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import net.marcoreis.ecommerce.controlador.LoginBean;
-import net.marcoreis.ecommerce.entidades.Usuario;
+import net.marcoreis.ecommerce.entidades.Cliente;
 
 @WebFilter(filterName = "FiltroAcesso", urlPatterns = "*.faces")
 public class FiltroAcesso implements Filter {
@@ -67,13 +67,13 @@ public class FiltroAcesso implements Filter {
 		}
 	}
 
-	private Usuario getUsuarioSessao(
+	private Cliente getUsuarioSessao(
 			HttpServletRequest request) {
 		HttpSession session = ((HttpServletRequest) request)
 				.getSession(false);
 		LoginBean bean = (LoginBean) session
 				.getAttribute("loginBean");
-		return bean.getUsuario();
+		return bean.getCliente();
 	}
 
 	@Override

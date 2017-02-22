@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import net.marcoreis.ecommerce.util.IPersistente;
 
@@ -16,6 +17,8 @@ public class Venda implements IPersistente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Date data;
+	@ManyToOne
+	private Cliente cliente;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -31,6 +34,14 @@ public class Venda implements IPersistente {
 
 	public Date getData() {
 		return data;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
 	}
 
 }

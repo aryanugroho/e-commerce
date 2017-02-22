@@ -6,13 +6,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import net.marcoreis.ecommerce.entidades.Usuario;
-import net.marcoreis.ecommerce.util.JPAUtil;
-
 import org.apache.log4j.Logger;
+
+import net.marcoreis.ecommerce.entidades.Cliente;
+import net.marcoreis.ecommerce.util.JPAUtil;
 
 @SessionScoped
 @ManagedBean
@@ -26,16 +25,16 @@ public class LoginBean extends BaseBean {
 		try {
 			EntityManager em = JPAUtil.getInstance()
 					.getEntityManager();
-			String hql = "select u from Usuario u where email = :email";
-			TypedQuery<Usuario> query = (TypedQuery<Usuario>) em
-					.createQuery(hql, Usuario.class);
-			query.setParameter("email", getUsuario().getEmail());
-			List<Usuario> usuarios = query.getResultList();
-			Usuario usuario = usuarios.get(0);
-			setUsuario(usuario);
+			String sql = "select c from Cliente c where email = :email";
+			TypedQuery<Cliente> query = em.createQuery(sql,
+					Cliente.class);
+			query.setParameter("email", getCliente().getEmail());
+			List<Cliente> clientes = query.getResultList();
+			Cliente cliente = clientes.get(0);
+			setCliente(cliente);
 			setLoggedIn(true);
 			em.close();
-			if (usuario != null) {
+			if (cliente != null) {
 				return "inicio";
 			} else {
 				setLoggedIn(false);
@@ -51,7 +50,6 @@ public class LoginBean extends BaseBean {
 
 	@PostConstruct
 	public void init() {
-		setUsuario(new Usuario());
 	}
 
 	public void setLoggedIn(boolean loggedIn) {
