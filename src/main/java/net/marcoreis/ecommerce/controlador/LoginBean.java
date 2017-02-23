@@ -50,6 +50,7 @@ public class LoginBean extends BaseBean {
 
 	@PostConstruct
 	public void init() {
+		setCliente(new Cliente());
 	}
 
 	public void setLoggedIn(boolean loggedIn) {
