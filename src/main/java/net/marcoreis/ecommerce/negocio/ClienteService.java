@@ -1,7 +1,5 @@
 package net.marcoreis.ecommerce.negocio;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -12,13 +10,17 @@ public class ClienteService {
 	public Cliente carregarCliente(String email) {
 		EntityManager em = JPAUtil.getInstance()
 				.getEntityManager();
-		String sql = "select c from Cliente c where email = :email";
-		TypedQuery<Cliente> query = em.createQuery(sql,
-				Cliente.class);
-		query.setParameter("email", email);
-		List<Cliente> clientes = query.getResultList();
-		Cliente cliente = clientes.get(0);
-		em.close();
-		return cliente;
+		try {
+			String sql = "select c from Cliente c where email = :email";
+			TypedQuery<Cliente> query = em.createQuery(sql,
+					Cliente.class);
+			query.setParameter("email", email);
+			Cliente cliente = query.getSingleResult();
+			return cliente;
+		} catch (Exception e) {
+			return null;
+		} finally {
+			em.close();
+		}
 	}
 }

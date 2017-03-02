@@ -52,7 +52,7 @@ public class TesteProduto {
 		if (atributo == null) {
 			atributo = new Atributo();
 			atributo.setNome("Cor");
-			atributo.setValor("Verde, Amarelo, Azul, Branco");
+			atributo.setValores("Verde, Amarelo, Azul, Branco");
 			em.persist(atributo);
 		}
 		//

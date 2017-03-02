@@ -14,7 +14,7 @@ public class Atributo implements IPersistente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String valor;
+	private String valores;
 
 	public String getNome() {
 		return nome;
@@ -24,12 +24,12 @@ public class Atributo implements IPersistente {
 		this.nome = nome;
 	}
 
-	public String getValor() {
-		return valor;
+	public String getValores() {
+		return valores;
 	}
 
-	public void setValor(String valor) {
-		this.valor = valor;
+	public void setValores(String valores) {
+		this.valores = valores;
 	}
 
 	@Override

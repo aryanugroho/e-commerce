@@ -18,7 +18,8 @@ public class GenericService implements Serializable {
 		try {
 			String jpaql = "select c from " + entidade.getName()
 					+ " c ";
-			List lista = em.createQuery(jpaql).getResultList();
+			List lista = em.createQuery(jpaql)
+					.getResultList();
 			return lista;
 		} catch (Exception e) {
 			throw new RuntimeException(e);

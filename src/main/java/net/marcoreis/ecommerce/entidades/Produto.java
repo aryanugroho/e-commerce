@@ -32,12 +32,11 @@ public class Produto implements IPersistente {
 	private Long id;
 	private String nome;
 	private String descricao;
-	private String especificacaoLoja;
 	private Double preco;
 	@Lob
 	@Column(length = 1024 * 1024 * 5)
 	private byte[] especificacaoFabricante;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "ProdutoCategoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<Categoria>(
 			0);
@@ -68,14 +67,6 @@ public class Produto implements IPersistente {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public String getEspecificacaoLoja() {
-		return especificacaoLoja;
-	}
-
-	public void setEspecificacaoLoja(String especificacaoLoja) {
-		this.especificacaoLoja = especificacaoLoja;
 	}
 
 	public byte[] getEspecificacaoFabricante() {
