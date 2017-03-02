@@ -22,18 +22,6 @@ public class ClienteBean extends BaseBean {
 	}
 
 	public void salvar() {
-		EntityManager em = JPAUtil.getInstance()
-				.getEntityManager();
-		try {
-			em.getTransaction().begin();
-			em.merge(getCliente());
-			em.getTransaction().commit();
-			em.close();
-			infoMsg("Dados gravados com sucesso");
-		} catch (Exception e) {
-			em.getTransaction().rollback();
-			errorMsg(e);
-		}
 	}
 
 	public void carregarClientes() {

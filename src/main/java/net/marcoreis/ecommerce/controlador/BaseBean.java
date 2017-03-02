@@ -14,7 +14,7 @@ public class BaseBean implements Serializable {
 	protected static final Logger logger = Logger
 			.getLogger(BaseBean.class);
 	protected static final String MENSAGEM_SUCESSO_GRAVACAO = "Dados gravados com sucesso";
-	private Cliente cliente;
+	protected Cliente cliente;
 
 	protected void infoMsg(String message) {
 		FacesMessage msg = new FacesMessage(message);
