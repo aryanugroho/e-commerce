@@ -15,8 +15,9 @@ public class JPAUtil {
 	}
 
 	private void inicializar() {
-		if (entityManager == null || !entityManager.isOpen())
+		if (entityManager == null || !entityManager.isOpen()) {
 			entityManager = emf.createEntityManager();
+		}
 	}
 
 	public static JPAUtil getInstance() {

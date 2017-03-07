@@ -140,4 +140,20 @@ public class IndexadorECommerce {
 		diretorio.close();
 	}
 
+	/**
+	 * Indexa os produtos atualizados nos últimos minutos
+	 * 
+	 * @param tempoEmMinutos
+	 * @throws IOException
+	 * @throws TikaException
+	 */
+	public void indexarNovosProdutos(int tempoEmMinutos)
+			throws IOException, TikaException {
+		List<Produto> produtos = produtoService
+				.consultarNovosProdutos(tempoEmMinutos);
+		for (Produto produto : produtos) {
+			indexarProduto(produto);
+		}
+	}
+
 }
