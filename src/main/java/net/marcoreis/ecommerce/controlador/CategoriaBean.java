@@ -37,7 +37,7 @@ public class CategoriaBean extends BaseBean {
 
 	public void salvar() {
 		try {
-			getCategoriaService().salvar(getCategoria());
+			categoriaService.salvar(getCategoria());
 			infoMsg("Dados gravados com sucesso");
 		} catch (Exception e) {
 			errorMsg(e);
@@ -45,7 +45,7 @@ public class CategoriaBean extends BaseBean {
 	}
 
 	public void carregarCategorias() {
-		categorias = getCategoriaService().carregarCategorias();
+		categorias = categoriaService.carregarCategorias();
 	}
 
 	// public String editar(Categoria categoria) {
@@ -54,7 +54,7 @@ public class CategoriaBean extends BaseBean {
 
 	public void excluir(Categoria categoria) {
 		try {
-			getCategoriaService().remove(categoria);
+			categoriaService.remove(categoria);
 			carregarCategorias();
 			infoMsg("Categoria excluída: "
 					+ categoria.getNome());
@@ -63,7 +63,4 @@ public class CategoriaBean extends BaseBean {
 		}
 	}
 
-	public CategoriaService getCategoriaService() {
-		return categoriaService;
-	}
 }

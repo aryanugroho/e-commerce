@@ -34,8 +34,8 @@ public class TesteCliente {
 	public void teste1InserirCliente() {
 		Random r = new Random();
 		Cliente cliente = new Cliente();
-		cliente.setEmail("jose@oracle.com");
-		cliente.setNome("Jose Carlos");
+		cliente.setEmail("fulano@abc.net");
+		cliente.setNome("Marco Reis");
 		cliente.setCpfCnpj(r.nextInt() + "");
 		em.persist(cliente);
 		Assert.assertTrue("Cliente gravado com sucesso",

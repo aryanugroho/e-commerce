@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 import net.marcoreis.ecommerce.entidades.Cliente;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
-public class ClienteService {
+public class ClienteService extends GenericService {
 	public Cliente carregarCliente(String email) {
 		EntityManager em = JPAUtil.getInstance()
 				.getEntityManager();

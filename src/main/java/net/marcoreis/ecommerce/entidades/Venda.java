@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import net.marcoreis.ecommerce.util.IPersistente;
 
@@ -19,6 +21,8 @@ public class Venda implements IPersistente {
 	private Date data;
 	@ManyToOne
 	private Cliente cliente;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataAtualizacao;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -42,6 +46,14 @@ public class Venda implements IPersistente {
 
 	public Cliente getCliente() {
 		return cliente;
+	}
+
+	public void setDataAtualizacao(Date dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public Date getDataAtualizacao() {
+		return dataAtualizacao;
 	}
 
 }

@@ -1,5 +1,6 @@
 package net.marcoreis.ecommerce.entidades;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import net.marcoreis.ecommerce.util.IPersistente;
 
@@ -43,6 +46,8 @@ public class Produto implements IPersistente {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "ProdutoAtributo", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "atributo_id"))
 	private Set<Atributo> atributos = new HashSet<Atributo>(0);
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataAtualizacao;
 	//
 
 	public Long getId() {
@@ -100,6 +105,14 @@ public class Produto implements IPersistente {
 
 	public Set<Atributo> getAtributos() {
 		return atributos;
+	}
+
+	public void setDataAtualizacao(Date dataAtualizacao) {
+		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public Date getDataAtualizacao() {
+		return dataAtualizacao;
 	}
 
 }

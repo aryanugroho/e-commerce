@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.DateTools;
+import org.apache.lucene.document.DateTools.Resolution;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.document.StringField;
@@ -28,7 +30,7 @@ public class IndexadorECommerce {
 	private ProdutoService produtoService = new ProdutoService();
 	private IndexWriter writer;
 	private Directory diretorio;
-	private Tika tika;
+	private Tika tika = new Tika();
 	private String diretorioIndice = System.getProperty(
 			"user.home") + "/livro-lucene/indice-produto";
 
@@ -37,13 +39,6 @@ public class IndexadorECommerce {
 		diretorio = FSDirectory.open(Paths.get(diretorioIndice));
 		IndexWriterConfig conf = new IndexWriterConfig(analyzer);
 		writer = new IndexWriter(diretorio, conf);
-	}
-
-	public Tika getTika() {
-		if (tika == null) {
-			tika = new Tika();
-		}
-		return tika;
 	}
 
 	public void indexarProdutos()
@@ -63,7 +58,7 @@ public class IndexadorECommerce {
 		if (produto.getEspecificacaoFabricante() != null) {
 			ByteArrayInputStream bytes = new ByteArrayInputStream(
 					produto.getEspecificacaoFabricante());
-			especFabricante = getTika().parseToString(bytes);
+			especFabricante = tika.parseToString(bytes);
 		}
 		//
 		preencherDadosProduto(produto, doc, especFabricante);
@@ -133,6 +128,11 @@ public class IndexadorECommerce {
 				especFabricante, Store.YES));
 		doc.add(new TextField("produto_preco",
 				produto.getPreco().toString(), Store.YES));
+		doc.add(new TextField("data_atualizacao",
+				DateTools.dateToString(
+						produto.getDataAtualizacao(),
+						Resolution.MINUTE),
+				Store.YES));
 	}
 
 	public void fechar() throws IOException {

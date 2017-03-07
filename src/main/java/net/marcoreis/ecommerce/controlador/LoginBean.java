@@ -19,7 +19,7 @@ public class LoginBean extends BaseBean {
 	private ClienteService clienteService = new ClienteService();
 
 	public String login() {
-		cliente = getClienteService()
+		cliente = clienteService
 				.carregarCliente(getCliente().getEmail());
 		if (cliente != null) {
 			setCliente(cliente);
@@ -45,7 +45,4 @@ public class LoginBean extends BaseBean {
 		return loggedIn;
 	}
 
-	public ClienteService getClienteService() {
-		return clienteService;
-	}
 }
