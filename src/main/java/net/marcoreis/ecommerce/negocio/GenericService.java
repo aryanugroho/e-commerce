@@ -1,6 +1,7 @@
 package net.marcoreis.ecommerce.negocio;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,16 +10,16 @@ import javax.persistence.Query;
 import net.marcoreis.ecommerce.util.IPersistente;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
-public class GenericService implements Serializable {
+public class GenericService<T> implements Serializable {
 	private static final long serialVersionUID = -3367294814062827212L;
 
-	public List carregarColecao(Class<?> entidade) {
+	public List<T> carregarColecao(Class<T> classe) {
 		EntityManager em = JPAUtil.getInstance()
 				.getEntityManager();
 		try {
-			String jpaql = "select c from " + entidade.getName()
+			String jpaql = "select c from " + classe.getName()
 					+ " c ";
-			List lista = em.createQuery(jpaql)
+			List<T> lista = em.createQuery(jpaql, classe)
 					.getResultList();
 			return lista;
 		} catch (Exception e) {
@@ -26,6 +27,10 @@ public class GenericService implements Serializable {
 		} finally {
 			em.close();
 		}
+	}
+
+	public List<T> carregarColecao() {
+		return carregarColecao(getClasse());
 	}
 
 	public List carregarColecao(Class<?> entidade, String filtro,
@@ -89,6 +94,13 @@ public class GenericService implements Serializable {
 		} finally {
 			em.close();
 		}
+	}
+
+	public Class<T> getClasse() {
+		Class<T> persistentClass = (Class<T>) ((ParameterizedType) getClass()
+				.getGenericSuperclass())
+						.getActualTypeArguments()[0];
+		return persistentClass;
 	}
 
 }

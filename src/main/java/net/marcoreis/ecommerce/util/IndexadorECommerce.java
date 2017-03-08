@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.DateTools;
@@ -27,6 +28,8 @@ import net.marcoreis.ecommerce.entidades.Produto;
 import net.marcoreis.ecommerce.negocio.ProdutoService;
 
 public class IndexadorECommerce {
+	private static Logger logger = Logger
+			.getLogger(IndexadorECommerce.class);
 	private ProdutoService produtoService = new ProdutoService();
 	private IndexWriter writer;
 	private Directory diretorio;
@@ -34,7 +37,7 @@ public class IndexadorECommerce {
 	private String diretorioIndice = System.getProperty(
 			"user.home") + "/livro-lucene/indice-produto";
 
-	public IndexadorECommerce() throws IOException {
+	public void inicializar() throws IOException {
 		Analyzer analyzer = new StandardAnalyzer();
 		diretorio = FSDirectory.open(Paths.get(diretorioIndice));
 		IndexWriterConfig conf = new IndexWriterConfig(analyzer);
@@ -135,9 +138,13 @@ public class IndexadorECommerce {
 				Store.YES));
 	}
 
-	public void fechar() throws IOException {
-		writer.close();
-		diretorio.close();
+	public void fechar() {
+		try {
+			writer.close();
+			diretorio.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -154,6 +161,7 @@ public class IndexadorECommerce {
 		for (Produto produto : produtos) {
 			indexarProduto(produto);
 		}
+		logger.info(produtos.size() + " produtos indexados");
 	}
 
 }

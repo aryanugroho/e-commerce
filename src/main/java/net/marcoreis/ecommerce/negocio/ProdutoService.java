@@ -23,7 +23,7 @@ public class ProdutoService extends GenericService {
 	 */
 	public List<Produto> consultarNovosProdutos(
 			int tempoEmMinutos) {
-		String sql = "select p from Produto where dataAtualizacao between :inicio and :fim";
+		String sql = "select p from Produto p where dataAtualizacao between :inicio and :fim";
 		EntityManager em = JPAUtil.getInstance()
 				.getEntityManager();
 		TypedQuery<Produto> query = em.createQuery(sql,
@@ -31,8 +31,8 @@ public class ProdutoService extends GenericService {
 		Date agora = new Date();
 		Date inicio = new Date(
 				agora.getTime() - tempoEmMinutos * 60 * 1000);
-		query.setParameter(1, inicio);
-		query.setParameter(2, agora);
+		query.setParameter("inicio", inicio);
+		query.setParameter("fim", agora);
 		List<Produto> produtos = query.getResultList();
 		em.close();
 		return produtos;

@@ -7,14 +7,18 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.persistence.EntityManager;
 
+import org.apache.log4j.Logger;
+
 import net.marcoreis.ecommerce.entidades.Atributo;
 import net.marcoreis.ecommerce.entidades.Categoria;
 import net.marcoreis.ecommerce.entidades.Produto;
-import net.marcoreis.ecommerce.negocio.AtributoService;
+import net.marcoreis.ecommerce.negocio.GenericService;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
 public class TesteCriacaoProdutos {
-	private AtributoService service = new AtributoService();
+	private static Logger logger = Logger
+			.getLogger(TesteCriacaoProdutos.class);
+	private GenericService service = new GenericService();
 	private List<Atributo> atributos = new ArrayList<Atributo>();
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 	private EntityManager em;
@@ -33,9 +37,13 @@ public class TesteCriacaoProdutos {
 			p.setDescricao(
 					"Descrição do produto criado em " + data);
 			p.setNome("Nome do produto criado em " + data);
+			byte[] especificacaoTeste = ("Especificação de teste do fabricante em "
+					+ data).getBytes();
+			p.setEspecificacaoFabricante(especificacaoTeste);
 			atribuiPreco(p);
 			p.getAtributos().add(getAtributoRandomico());
 			p.getCategorias().add(getCategoriaRandomica());
+			p.setDataAtualizacao(data);
 			//
 			em.getTransaction().begin();
 			em.merge(p);
@@ -66,6 +74,6 @@ public class TesteCriacaoProdutos {
 	public static void main(String[] args)
 			throws InterruptedException {
 		TesteCriacaoProdutos t = new TesteCriacaoProdutos();
-		t.criarProdutos(1000, 300);
+		t.criarProdutos(10000, 100);
 	}
 }

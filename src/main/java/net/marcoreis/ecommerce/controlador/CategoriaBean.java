@@ -45,7 +45,8 @@ public class CategoriaBean extends BaseBean {
 	}
 
 	public void carregarCategorias() {
-		categorias = categoriaService.carregarCategorias();
+		categorias = categoriaService
+				.carregarColecao(Categoria.class);
 	}
 
 	// public String editar(Categoria categoria) {
