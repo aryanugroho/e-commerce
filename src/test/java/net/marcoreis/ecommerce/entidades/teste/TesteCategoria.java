@@ -3,15 +3,15 @@ package net.marcoreis.ecommerce.entidades.teste;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
-import net.marcoreis.ecommerce.entidades.Categoria;
-import net.marcoreis.ecommerce.util.JPAUtil;
+import javax.persistence.TypedQuery;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import net.marcoreis.ecommerce.entidades.Categoria;
+import net.marcoreis.ecommerce.util.JPAUtil;
 
 public class TesteCategoria {
 
@@ -32,8 +32,6 @@ public class TesteCategoria {
 	@Test
 	public void teste1InserirCategoria() {
 		Categoria c = new Categoria();
-		c.setDescricao(
-				"Utensílios domésticos para cama, mesa e banho");
 		c.setNome("Cama, mesa e banho");
 		em.persist(c);
 	}
@@ -41,7 +39,8 @@ public class TesteCategoria {
 	@Test
 	public void teste2ConsultarTodasCategorias() {
 		String jpaql = "select c from Categoria c";
-		Query query = em.createQuery(jpaql);
+		TypedQuery<Categoria> query = em.createQuery(jpaql,
+				Categoria.class);
 		List<Categoria> categorias = query.getResultList();
 		for (Categoria c : categorias) {
 			System.out.println(c.getId() + " - " + c.getNome());

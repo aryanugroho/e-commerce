@@ -8,28 +8,26 @@ import javax.persistence.Id;
 import net.marcoreis.ecommerce.util.IPersistente;
 
 @Entity
-public class Atributo implements IPersistente {
-	private static final long serialVersionUID = 1211598398995817325L;
+public class AtributoValor implements IPersistente {
+	private static final long serialVersionUID = 8891671998834416486L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
+	private String valor;
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@Override
 	public Long getId() {
 		return id;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+
+	public String getValor() {
+		return valor;
 	}
 }

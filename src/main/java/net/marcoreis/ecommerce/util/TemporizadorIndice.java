@@ -20,15 +20,16 @@ public class TemporizadorIndice implements Runnable {
 			.newScheduledThreadPool(1);
 
 	public void iniciar() {
-		scheduler.scheduleAtFixedRate(this, 1, 30,
-				TimeUnit.SECONDS);
+		scheduler.scheduleAtFixedRate(this, 1, 1,
+				TimeUnit.MINUTES);
 	}
 
 	public void run() {
 		IndexadorECommerce indexador = new IndexadorECommerce();
 		try {
 			indexador.inicializar();
-			indexador.indexarNovosProdutos(1);
+			int um_minuto = 1;
+			indexador.indexarNovosProdutos(um_minuto);
 		} catch (Exception e) {
 			logger.error(e);
 		} finally {

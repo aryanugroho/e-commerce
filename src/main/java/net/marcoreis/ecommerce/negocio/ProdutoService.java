@@ -1,6 +1,5 @@
 package net.marcoreis.ecommerce.negocio;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import javax.persistence.TypedQuery;
 import net.marcoreis.ecommerce.entidades.Produto;
 import net.marcoreis.ecommerce.util.JPAUtil;
 
-public class ProdutoService extends GenericService {
+public class ProdutoService extends GenericService<Produto> {
 
 	private static final long serialVersionUID = -2527941294512350117L;
 

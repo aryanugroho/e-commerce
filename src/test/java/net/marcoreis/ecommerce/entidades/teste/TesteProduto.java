@@ -41,8 +41,6 @@ public class TesteProduto {
 				idCategoria);
 		if (categoria == null) {
 			categoria = new Categoria();
-			categoria.setDescricao(
-					"Utensílios domésticos para cama, mesa e banho");
 			categoria.setNome("Cama, mesa e banho");
 			em.persist(categoria);
 		}

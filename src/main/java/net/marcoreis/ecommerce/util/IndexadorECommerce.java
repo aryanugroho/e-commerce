@@ -83,7 +83,7 @@ public class IndexadorECommerce {
 		textoCompleto.append(especFabricante);
 		textoCompleto.append(" ");
 		textoCompleto.append(produto.getDescricao());
-		doc.add(new TextField("textoCompleto",
+		doc.add(new TextField("texto_completo",
 				textoCompleto.toString(), Store.YES));
 	}
 
@@ -108,12 +108,6 @@ public class IndexadorECommerce {
 					categoria.getNome(), Store.YES));
 			textoCompleto.append(" ");
 			textoCompleto.append(categoria.getNome());
-			String descricao = categoria.getDescricao() == null
-					? "" : categoria.getDescricao();
-			doc.add(new TextField("categoria_descricao",
-					descricao, Store.YES));
-			textoCompleto.append(" ");
-			textoCompleto.append(descricao);
 		}
 	}
 

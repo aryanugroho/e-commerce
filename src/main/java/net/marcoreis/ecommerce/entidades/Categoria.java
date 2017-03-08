@@ -9,14 +9,13 @@ import javax.persistence.NamedQuery;
 import net.marcoreis.ecommerce.util.IPersistente;
 
 @Entity
-@NamedQuery(name = "categoria.consultaPelaDescricao", query = "select c from Categoria c where c.descricao like :descricao")
+@NamedQuery(name = "categoria.consultaPeloNome", query = "select c from Categoria c where c.nome like :nome")
 public class Categoria implements IPersistente {
 	private static final long serialVersionUID = 6833139035296224500L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String descricao;
 
 	public Long getId() {
 		return id;
@@ -32,14 +31,6 @@ public class Categoria implements IPersistente {
 
 	public String getNome() {
 		return nome;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public String getDescricao() {
-		return descricao;
 	}
 
 	public boolean equals(Object obj) {
