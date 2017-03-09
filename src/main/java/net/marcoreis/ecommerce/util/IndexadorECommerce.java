@@ -25,6 +25,7 @@ import org.apache.tika.exception.TikaException;
 import net.marcoreis.ecommerce.entidades.Atributo;
 import net.marcoreis.ecommerce.entidades.Categoria;
 import net.marcoreis.ecommerce.entidades.Produto;
+import net.marcoreis.ecommerce.entidades.ProdutoAtributo;
 import net.marcoreis.ecommerce.negocio.ProdutoService;
 
 public class IndexadorECommerce {
@@ -89,15 +90,16 @@ public class IndexadorECommerce {
 
 	private void preencherDadosAtributo(Produto produto,
 			Document doc, StringBuilder textoCompleto) {
-		for (Atributo atributo : produto.getAtributos()) {
+		for (ProdutoAtributo pa : produto
+				.getProdutoAtributos()) {
 			doc.add(new TextField("atributo_nome",
-					atributo.getNome(), Store.YES));
+					pa.getAtributo().getNome(), Store.YES));
 			textoCompleto.append(" ");
-			textoCompleto.append(atributo.getNome());
+			textoCompleto.append(pa.getAtributo().getNome());
 			doc.add(new TextField("atributo_valor",
-					atributo.getValores(), Store.YES));
+					pa.getValor(), Store.YES));
 			textoCompleto.append(" ");
-			textoCompleto.append(atributo.getValores());
+			textoCompleto.append(pa.getValor());
 		}
 	}
 

@@ -61,7 +61,7 @@ public class TesteCriacaoProdutos {
 		for (int i = 0; i < random; i++) {
 			atributosAleatorios.add(getAtributoRandomico());
 		}
-		p.getAtributos().addAll(atributosAleatorios);
+		// p.getAtributos().addAll(atributosAleatorios);
 	}
 
 	/**

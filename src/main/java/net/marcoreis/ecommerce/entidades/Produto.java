@@ -29,26 +29,29 @@ import net.marcoreis.ecommerce.util.IPersistente;
 public class Produto implements IPersistente {
 	private static final long serialVersionUID = 3206252406240046848L;
 
-	//
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String descricao;
 	private Double preco;
+
 	@Lob
 	@Column(length = 1024 * 1024 * 5)
 	private byte[] especificacaoFabricante;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "ProdutoCategoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private Set<Categoria> categorias = new HashSet<Categoria>(
 			0);
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "ProdutoAtributo", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "atributo_id"))
-	private Set<Atributo> atributos = new HashSet<Atributo>(0);
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAtualizacao;
-	//
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "ProdutoAtributo", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	private Set<ProdutoAtributo> produtoAtributos = new HashSet<ProdutoAtributo>(
+			0);
 
 	public Long getId() {
 		return id;
@@ -99,14 +102,6 @@ public class Produto implements IPersistente {
 		return categorias;
 	}
 
-	public void setAtributos(Set<Atributo> atributos) {
-		this.atributos = atributos;
-	}
-
-	public Set<Atributo> getAtributos() {
-		return atributos;
-	}
-
 	public void setDataAtualizacao(Date dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
@@ -115,4 +110,12 @@ public class Produto implements IPersistente {
 		return dataAtualizacao;
 	}
 
+	public void setProdutoAtributos(
+			Set<ProdutoAtributo> produtoAtributos) {
+		this.produtoAtributos = produtoAtributos;
+	}
+
+	public Set<ProdutoAtributo> getProdutoAtributos() {
+		return produtoAtributos;
+	}
 }

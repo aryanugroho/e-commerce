@@ -3,7 +3,6 @@ package net.marcoreis.ecommerce.entidades.teste;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.junit.After;
@@ -50,7 +49,6 @@ public class TesteProduto {
 		if (atributo == null) {
 			atributo = new Atributo();
 			atributo.setNome("Cor");
-			atributo.setValores("Verde, Amarelo, Azul, Branco");
 			em.persist(atributo);
 		}
 		//
@@ -60,16 +58,15 @@ public class TesteProduto {
 		produto.setNome("Colcha para cama de solteiro");
 		produto.setPreco(150.00);
 		produto.getCategorias().add(categoria);
-		produto.getAtributos().add(atributo);
 		em.persist(produto);
 	}
 
 	@Test
 	public void teste2ConsultarProdutosPelaCategoria() {
 		Long idCategoria = 1l;
+		String sql = "select p from Produto p join p.categorias c where c.id in (?1)";
 		List<Produto> produtos = em
-				.createQuery(
-						"select p from Produto p join p.categorias c where c.id in (?1)")
+				.createQuery(sql, Produto.class)
 				.setParameter(1, idCategoria).getResultList();
 		for (Produto p : produtos) {
 			System.out.println(p.getId() + " - " + p.getNome());
